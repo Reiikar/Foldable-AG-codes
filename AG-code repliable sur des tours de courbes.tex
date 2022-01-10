@@ -1,0 +1,380 @@
+\documentclass[10pt]{article}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{pict2e}
+\usepackage{tikz}
+
+\usepackage[all]{xy}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{hmargin=2.5cm,vmargin=1.5cm}
+
+
+
+\newtheorem{def1}{Définition}[]
+\newtheorem{expl}{Exemple}[]
+\newtheorem{thm}{Théorème}[]
+\newtheorem{prop1}{Proposition}[]
+\newtheorem{coro1}{Corollaire}[]
+\newtheorem{lem1}{Lemme}[]
+\newtheorem{rq1}{Remark}[]
+\newtheorem{defp}{Définition/Proposition}[]
+\newtheorem{Analyse}{Analyse}[]
+\newtheorem{appli}{Application}[]
+\newtheorem{not1}{Notation}[]
+
+
+\newcommand{\s}{\vspace{0.3cm}}
+\newcommand{\cd}{\cdot}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\D}{\Delta}
+\newcommand{\G}{\Gamma}
+\newcommand{\op}{{\mathcal{O}_P/\!\raisebox{-.65ex}{\ensuremath{P}}}}
+\newcommand{\kki}{{k_i/\!\raisebox{-.65ex}{\ensuremath{k}}}}
+\newcommand{\fpf}{{F^+/\!\raisebox{-.65ex}{\ensuremath{F}}}}
+\newcommand{\ff}{{F'/\!\raisebox{-.65ex}{\ensuremath{F}}}}
+\newcommand{\ffp}{{F''/\!\raisebox{-.65ex}{\ensuremath{F'}}}}
+\newcommand{\ffq}{{F/\!\raisebox{-.65ex}{\ensuremath{\mathbb{F}_q}}}}
+\newcommand{\ffdouble}{{F''/\!\raisebox{-.65ex}{\ensuremath{F}}}}
+\newcommand{\ffr}{{F_r/\!\raisebox{-.65ex}{\ensuremath{\fqr}}}}
+\newcommand{\ffm}{{F_m/\!\raisebox{-.65ex}{\ensuremath{\fqm}}}}
+\newcommand{\fk}{{F/\!\raisebox{-.65ex}{\ensuremath{K}}}}
+\newcommand{\ml}{{M/\!\raisebox{-.65ex}{\ensuremath{L}}}}
+\newcommand{\plp}{{F'_{P'}/\!\raisebox{-.65ex}{\ensuremath{F_P}}}}
+\newcommand{\fkp}{{F'/\!\raisebox{-.65ex}{\ensuremath{K'}}}}
+\newcommand{\fkpp}{{F''/\!\raisebox{-.65ex}{\ensuremath{K''}}}}
+\newcommand{\kk}{K'/\!\raisebox{-.65ex}{\ensuremath{K}}}
+\newcommand{\aff}{\mathcal{A}_{\ff}}
+\newcommand{\av}{\mathcal{O}}
+\newcommand{\avp}{\mathcal{O'}}
+\newcommand{\rsg}{GRS_k(\al,v)}
+\newcommand{\al}{\alpha}
+\newcommand{\cw}{C_{\Omega}(D,G)}
+\newcommand{\cg}{C_{\la}(D,G)}
+\newcommand{\fqm}{\mathbb{F}_{q^m}}
+\newcommand{\fqn}{\mathbb{F}_{q^n}}
+\newcommand{\fq}{\mathbb{F}_q}
+\newcommand{\fqd}{\mathbb{F}_{q^2}}
+\newcommand{\fqo}{\mathbb{F}_{q_0}}
+\newcommand{\fqr}{\mathbb{F}_{q^r}}
+\newcommand{\w}{\omega}
+\newcommand{\af}{\mathcal{A}_F}
+\newcommand{\afp}{\mathcal{A}_{F'}}
+\newcommand{\vp}{\nu_P}
+\newcommand{\la}{\mathfrak{L}}
+\newcommand{\pf}{\mathbb{P}_F}
+\newcommand{\pfp}{\mathbb{P}_{F'}}
+\newcommand{\cf}{\mathfrak{C}_F}
+\newcommand{\df}{\mathfrak{D}_F}
+\newcommand{\z}{z^{-1}}
+\newcommand{\su}{\subseteq}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\PR}{\mathcal{P}}
+\newcommand{\QR}{\mathcal{Q}}
+\newcommand{\h}{\mathcal{H}}
+\newcommand{\pl}{\mathbb{P}^1}
+\newcommand{\co}{\mathcal{C}}
+\newcommand{\coo}{\mathcal{D}}
+\newcommand{\f}{\mathbb{F}}
+\newcommand{\ii}{i_{\rm{max}}}
+
+\begin{document}
+
+\begin{center}
+\Huge{AG-codes repliables sur des tours de courbes}
+\end{center}
+
+\section{Introduction}
+
+Étant donnée une tour de corps de fonctions $(F_i)_{i \geq 0}$, notre objectif sera de construire une suite de codes géométriques $(\mathcal{C}_i)$ sur $F_i$ ($i \geq 0$); de tel sorte que l'on puisse réduire un test de proximité au "gros" code $C_i$ à un test de proximité sur ses replies successifs (ie. les codes $\mathcal{C}_j$ construit sur les $F_j$, pour $j \leq i$. \\
+Pour cela, on considérera différentes tours de corps de fonctions, qui vérifient de "bonnes propriétés", du type :
+\begin{enumerate}
+\item On est capable de décomposer un espace de Riemann-Roch sur $F_i$ avec des espaces de Riemann-Roc sur les courbes quotients définies par les $F_j$, $j \leq i$;
+\item On est en mesure de calculer de manière efficace les espaces de Riemann-Roch dans la tour;
+\item On connaît la ramification dans la tour $(F_i)$, ainsi qu'une formule du genre $g_i = g(F_i)$ pour tout $i$;
+\item Les corps de fonctions successifs $F_i$ possèdent "beaucoup" de points rationnels, ce qui nous permet de construire des codes géométriques assez longs.
+\end{enumerate}
+
+\section{La tour Hermitienne}
+
+\subsection{Généralités}
+
+On considère la tour de courbes Hermitienne $(H_i)_{i\geq 0}$ sur $\mathbb{F}_{q^2}$ définie récursivement par l'équation
+\[ H_i = H_{i-1}(x_i) \ , \ avec \ \  x_i^q+x_{i} = x_{i-1}^{q+1},\]
+et $H_0=\mathbb{F}_{q^2}(x_0)$ le corps de fonctions rationnel. \\
+Commençons par étudier la ramification dans la tour :
+
+\begin{lem1}
+Notons $P_{\infty}^{(0)}$ le pôle de $x_0$ dans $H_0$. Alors $P_{\infty}^{(0)}$ est totalement ramifié dans chaque $F_j$, et son unique extension $P_{\infty}^{(j)}$ vérifie 
+\[e(P_{\infty}^{(j)}|P_{\infty}^{(0)}) = [H_j:H_0]=q^j.\]
+\end{lem1}
+
+\begin{proof}
+étude classique des extensions d'Artin-Schreier, cf. Stichtenoch.
+\end{proof}
+
+La même théorie des extensions d'Artin-Schreier nous permet de montrer que dans le corps de fonctions basique $H=\mathbb{F}_{q^2}(x,y)$, avec $y^q+y=x^{q+1}$ de la tour $(H_i)$; on a 
+\[(x)^{\mathbb{F}_{q^2}} = P^{(0)} - P^{(0)}_{\infty},\]
+et
+\[(y)^H = (q+1)P^{(1)} - (q+1)P^{(1)}_{\infty};\]
+où $P^{(1)}$ est l'unique extension de $P^{(0)}$ qui est un zéro commun de $x$ et $y$.
+En appliquant ceci de manière récursive dans la tour, on obtient le lemme suivant :
+
+\begin{lem1}
+\begin{enumerate}
+\item $P_{\infty}^{(0)}$ est l'unique place qui se ramifie dans la tour;
+\item Pour $i \geq 1$, on a 
+\[(x_i)^{H_i} = (q+1)^i (P^{(i)} - P_{\infty}^{(i)},\]
+$P^{(i)}$ étant l'unique zéro commun de $x_0,...,x_i$;
+\item Pour $i \geq 1$, on a 
+\[(x_{i-1})^{H_i} = (q+1)^{i-1}S^{(i)} - q(q+1)^{i-1}P_{\infty}^{(i)},\]
+où $S^{(i)} = \sum\limits_{j=1}^q P_j^{(i)}$, avec $P_j^{(i)} \mid P^{(i-1)}$.
+\end{enumerate}
+\end{lem1}
+
+Ensuite, la formule du genre d'Hurwitz nous donne, pour $i \geq 1$ :
+\[g_i := g(H_i) = 1-q^i + \dfrac{1}{2} \cd \rm{deg}\left(Diff(H_i/H_0)\right).\]
+
+À partir de ce stade, il n'est pas difficile de déterminer $g_i$, puisque le différente est uniquement supportée par les points qui se ramifient, et que l'on en a qu'un seul dans cette tour. En particulier, en utilisant la transitivité de la différente (cf. Stichtenoch), ainsi que le fait que pour tout $i \geq 0$, on a 
+\[d(P^{(i+1)}_{\infty} | P^{(i)}_{\infty}) = (q-1)(a_i+1),\]
+avec $a_i := \nu_{P^{(i+1)}_{\infty}}(x_{i+1}) = q+1$, on obtient la formule :
+
+
+\begin{prop1}
+On a $g_0=0$ et pour tout $i\geq 1$,
+\begin{align*}
+g_i &= \dfrac{1}{2} \cd ((q^2-1)((q+1)^i-q^i)+1-q^i) \\
+ &=\dfrac{1}{2} \cd \left(\sum\limits_{k=1}^i q^{i+1} \cd \left(1+\frac{1}{q}\right)^{k-1} +1 -(1+q)^i\right)
+\end{align*}
+\end{prop1}
+
+Concernant le nombre de places rationnelles sur chaque $H_i$, on peut montrer que pour tout $\alpha \in \mathbb{F}_{q^2}$, la place $P_{x_0-\alpha}$ de $H_0$ est totalement décomposée dans $H_1$. Elle possède donc $q$ extensions $P_j$ pour $1 \leq j \leq q$, et chauque $P_j$ est le zéro commun de $x_0-\alpha$ et $x_1-\beta_j$ dans $H_1$, où les $\beta_j$ sont précisément les racines du polynôme $T^q+T-\alpha^{q+1}$. De nouveaux pas récursivité, et sachant que le pôle de $x_0$ est totalement ramifié dans la tour, on obtient
+
+\begin{prop1}
+Pour tout $i \geq 1$, on a
+\[N_i := \#H_i(\mathbb{F}_{q^2}) = q^{i+2}+1.\]
+\end{prop1}
+
+Dans le but d'obtenir une suite de codes repliables, il nous faut décrire les espaces de Riemann-Roch à un certain étage à partir d'espaces de Riemann-Roch sur les étages inférieurs. Le problème est priori est que le théorème de Kani ne s'applique pas, donc il nous faudra trouver une décomposition à la main. En particulier, il est raisonnable de supposer que les diviseurs associés à nos codes sont seulement supportés par l'unique point ramifiés, ie. $P^{(i)}_{\infty}$. On se retrouve donc à devoir étudier le comportement des espaces de Riemann-Roch de la forme 
+\[L_{H_i}\left(rP^{(i)}_{\infty}\right), \ pour \ i \geq 1.\] 
+Or, à un étage $i$ fixé, $P^{(i)}_{\infty}$ est précisément l'unique pôles de $x_0,...,x_i$; on a donc le lemme suivant :
+
+\begin{lem1}
+Pour tout $i \leq 1$ et $r \leq 1$, on a 
+\[L_{H_i}(rP^{(i)}_{\infty}) = \left\{x_0^{a_0} \cdots x_i^{a_i} \ | \ a_0 \geq 0 \ , \ a_j \leq q-1 \ et \ \sum\limits_{j=0}^i a_jq^{i-j}(q+1)^j \leq r \right\}.\]
+\end{lem1}
+
+\s
+
+\subsection{Construction de codes repliables}
+
+\s
+
+On fixe un étage $\ii \geq 1$ dans notre tour Hermitienne. On considère un code géométrique sur $H_{\ii}$ donné par 
+\[\mathcal{C}_{\ii} := C_L(H_{\ii},\PR_{\ii},G_{\ii}),\]
+où $G_{\ii} = d_{\ii} \cd P^{(\ii)}_{\infty}$.
+
+\s
+
+Soit $i \leq \ii$. On note $G_i$ le replié de $G_{\ii}$ sur $H_i$ (on verra plus tard comment ces repliés sont construits). Pour tout $0 \leq j \leq q-1$, notons 
+\[E_{i,j} := \left\lfloor \frac{1}{q} \pi_*\left(G_i-j(x_i)^{H_i}_{\infty}\right)\right\rfloor,\]
+où $\pi : H_i \rightarrow H_{i-1}$ est indépendant de $i$. \\ 
+À l'aide du lemme 3 utilisé à la fois à l'étage $i$ et à l'étage $i-1$, on peut démontrer à la main la décomposition suivante :
+
+\begin{prop1} On a 
+\[L_{H_i}(G_i) = \bigoplus\limits_{j=0}^{q-1} x_i^j \pi^*\left(L_{H_{i-1}}(E_{i,j})\right).\]
+\end{prop1}
+
+D'après ce qui précède, on serait tenté de construire $G_{i-1} := E_{i,0} = \left\lfloor \dfrac{r_i}{q} \right\rfloor \cd P^{(i-1)}_{\infty}$, où $r_i := deg(G_i)$. De cette manière, on obtient bien 
+\[G_{i-1} \geq E_{i,j} \ , \ pour \ tout \ 0 \leq j \leq q-1,\] 
+ce qui est l'une des conditions demandées pour que $G_{i-1}$ soit $G_i$-compatible (cf. S. Bordage, J. Nardi, \it{Interactive Oracle Proofs of Proximity to Algebraic
+Geometry Codes} \rm pour une définition précise).
+\s
+En revanche, en construisant les diviseurs repliés de cette manière, on ne parvient pas à les équilibrer. En effet, l'autre condition de compatibilité est 
+de pouvoir trouver des fonctions équilibrantes $\nu_{i-1,j} \in H_{i-1}$ (pour tout $j$) telles que 
+\[G_{i-1}-E_{i,j} = (\nu_{i-1,j})^{H_i}_{\infty}. \quad \quad \quad (*)\]
+
+Or, ceci n'est pas toujours possible. En effet, on remarque que pour tout $0 \leq j \leq q-1$ :
+\[G_{i-1}-E_{i,j} = \left\lfloor \dfrac{r_i-j(q+1)^i}{q}\right\rfloor \cd P^{(i-1)}_{\infty}.\]
+
+Pour équilibrer nos diviseurs, il nous faut donc étudier le semi-groupe de Weierstrass de $P^{(i-1)}_{\infty}$. Par définition, une fonction $\nu \in H_{i-1}$ vérifie $(*)$ si et seulement si $\nu$ est polynomiale en les variables $x_0,...,x_{i-1}$. Par conséquent, on sait précisément quel est le semi-groupe de Weierstrass de $P^{(i-1)}_{\infty}$, ce qui est l'objet du lemme suivant :
+
+\begin{lem1}
+Pour $i \geq 1$, on a
+\[\mathcal{H}\left(P^{(i-1)}_{\infty}\right) = \left \langle q^{i-k}(q+1)^k \ , \ 0\leq k \leq i-1 \right\rangle_{\N}.\]
+\end{lem1}
+
+On en déduit que le diviseur $G_{i-1}$ ainsi construit est $G_i$ équilibré si et seulement si pour tout $1 \leq j \leq q-1$, 
+\[ \left\lfloor \dfrac{r_i-j(q+1)^i}{q}\right\rfloor \in \mathcal{H}\left(P^{(i-1)}_{\infty}\right).\]
+
+Cependant, en étudiant précisément les conditions ci-dessus, on se rend compte rapidement qu'elle n'est pratiquement jamais vérifiée; il nous faut donc construire autrement le diviseur $G_{i-1}$. 
+
+\s
+
+L'idée est la suivante : Pour s'assurer que les entiers $\rm{deg}(G_{i-1}-E_{i,j})$ ne soient pas des Gaps pour $P_{\infty}^{(i-1)}$ on augmente le degré du replié pour que ces écart soient automatiquement dans le semi-groupe de Weierstrass. De fait, on sait que 
+\[\rm{max}\left(\N \backslash \mathcal{H}\left(P^{(i-1)}_{\infty}\right)\right) \leq 2g_{i-1} -1.\]
+Ainsi, pour tout entier $i \leq \ii$, on construit le replié $G_{i-1}$ de $G_i := r_i \cd P^{(i)}_{\infty}$ en posant 
+\[G_{i-1} := \left(\left\lfloor \dfrac{r_i}{q} \right\rfloor + 2g_{i-1}\right) \cd P^{(i-1)}_{\infty}.\]
+De cette manière, on est sur de pouvoir trouver des fonctions équilibrantes. La contrepartie est que les ratios successifs des codes repliés augmentent, et il faut s'assurer que le code sur $\mathbb{P}^1$ ne soit pas trivial, ie. de ratio $> 1$. \\
+Dans la section suivante, on étudiera cette question. En particulier, on cherche à déterminer $\ii$ en fonction de $q$, de sorte que le code $\mathcal{C}_0$ sur $\mathbb{P}^1$ soit non trivial.
+
+\newpage
+
+\subsection{Majoration du ratio sur $\mathbb{P}^1$ et recherche de $\ii$}
+
+\s
+
+Afin de contrôler les ratios des différents code dans la tour, commençons par remarquer qu'ils forment une suite croissante, et que le plus gros ratio est celui du code $\mathcal{C}_0$. Afin de majorer ce ratio, on pourra majorer le degré $r_0$ du diviseur $G_0$ sur $\mathbb{P}^1$ (puisque ce de degré est pratiquement égal à la dimension du code). \\
+Nos diviseurs repliés étant construit de manière récursive, on peut estimer tous les degrés des diviseurs repliés.
+
+\begin{lem1}
+Pour $1 \leq j \leq \ii$, on a 
+\[d_{\ii -j} \leq \left\lfloor \dfrac{d_{\ii}}{q^j}\right\rfloor + \sum\limits_{k=1}^j \left\lfloor \dfrac{2g_{\ii -k}}{q^{j-k}}\right\rfloor + (j-1).\]
+\end{lem1}
+
+\begin{proof}
+par récurrence sur $j$.
+\end{proof}
+
+Afin de donner des valeurs plus concrètes, il nous faut choisir les supports de nos codes. En l'occurrence, on le choisira maximal, ie. composé de toutes les places rationnelles (en dehors bien sur du pôle commun des $x_j$). En particulier, pour tout $i \leq \ii$, on a dans ce cas :
+\[n_i := \#\PR_i = q^{i+2}.\]
+
+Le seul élément qu'il nous manque pour majorer $d_0$ est une majoration sur les genre $g_i$ dans la tour. On s'appuie sur le résultat suivant :
+
+\begin{prop1}
+Pour $i \geq 1$, on a
+\[g_i \leq \dfrac{q^{i+1}}{2} \sum\limits_{k=1}^i \binom{i}{k} \dfrac{1}{q^{k-1}} \leq \dfrac{iq^{i+1}}{2} \sum\limits_{k=1}^i \left(\dfrac{i}{q}\right)^{k-1} \leq \dfrac{i}{2}q^{i+1} + \dfrac{i(i-1)}{4}q^i,\]
+la dernière majoration utilisant le fait que $i-1 \leq q$.
+\end{prop1}
+
+\begin{proof}
+En repartant de la seconde expression de $g_i$ de la proposition 1, on a 
+\begin{align*}
+g_i  &=\dfrac{1}{2} \cd \left(\sum\limits_{k=1}^i q^{i+1} \cd \left(1+\frac{1}{q}\right)^{k-1} +\underbrace{1 -(1+q)^i}_{\leq 0}\right) \\
+	&\leq \dfrac{q^{i+1}}{2} \cd \left(\dfrac{1-(1+1/q)^i}{1-(1+1/q)}\right) \\
+	& = \dfrac{q^{i+1}}{2} \cd q \cd ((1+1/q)^i-1) \\
+	& = \dfrac{q^{i+1}}{2} \cd \sum\limits_{k=1}^i \binom{i}{k} \dfrac{1}{q^{k-1}}
+\end{align*}
+À ce stade, remarquons si $k geq 2$, on a $\binom{i}{k} = \dfrac{i(i-1) \cdots (i-k+1)}{k(k-1) \cdots 2} \leq \dfrac{i(i-1)^{k-1}}{2}$, en minorant le dénominateur par $2$ et les termes $i-1,i-2,...,i-k+1$ par $i-1$. En réinjectant dans ce qui précède, on obtient
+\begin{align*}
+g_i &\leq \dfrac{q^{i+1}}{2} \cd \left( i + \frac{i}{2} \sum\limits_{k=2}^i \left(\dfrac{i-1}{q}\right)^{k-1}\right) \\
+	&= \dfrac{iq^{i+1}}{2} \left( 1 + \frac{1}{2} \cd \left(\frac{i-1}{q}\right) \cd \left(\dfrac{1-(\frac{i-1}{q})^{i-1}}{1-(\frac{i-1}{q})}\right)\right) \\
+		&= \dfrac{iq^{i+1}}{2} \left( 1 + \frac{1}{2} \cd \dfrac{i-1}{q-i+1} \cd \left(\underbrace{1- \left(\dfrac{i-1}{q}\right)^{i-1}}_{\leq 0 \ si \ i-1 \leq q}\right)\right) \\
+	& \leq \dfrac{iq^{i+1}}{2} \left( 1 + \frac{i-1}{2q}\right),
+\end{align*}
+d'où la majoration souhaitée.
+\end{proof}
+
+En utilisant cette majoration du genre et le lemme 5 pour estimer $d_0$, on a 
+
+\begin{coro1}
+Avec les notations précédentes, le degré du diviseur $G_0$ du code replié sur $\mathbb{P}^1$ est majoré par 
+\[d_0 \leq \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{1}{2} + \frac{2\ii-1}{6}\right) + (\ii-1)  \]
+\end{coro1}
+
+\begin{proof}
+D'après le lemme 5 pour $j=\ii$, on a
+\begin{align*}
+d_0 &\leq \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \sum\limits_{k=1}^{\ii} \left\lfloor \dfrac{2g_{\ii -k}}{q^{\ii-k}}\right\rfloor + (\ii-1) \\
+	&= \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \sum\limits_{k=0}^{\ii-1} \left\lfloor \dfrac{2g_k}{q^k}\right\rfloor + (\ii-1) \\
+	& \leq \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \sum\limits_{k=0}^{\ii-1} \left(kq + \dfrac{k(k-1)}{2}\right) + (\ii-1) \\
+	&= \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + (q-\frac{1}{2}) \cd \dfrac{\ii(\ii-1)}{2} + \dfrac{\ii(\ii-1)(2\ii-1)}{12} + (\ii-1) \\
+	&= \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{1}{2} + \frac{2\ii-1}{6}\right) + (\ii-1) \\
+\end{align*}
+\end{proof}
+
+On peut alors déterminer une condition sur $\ii$ en fonction de $q$ pour que le code sur $\mathbb{P}^1$ soit de ratio $< 1$. En effet, ce ratio $\rho_0$ peut être estimer par 
+\[ \rho_0 = \dfrac{k_0}{n_0} = \dfrac{d_0+1}{n_0} \sim \dfrac{d_0}{n_0}.\]
+Si le code à l'étage maximal est construit de longueur maximale, ie. $n_{\ii} = q^{\ii+2}$, on a $n_0=q^2$. On obtient la condition suivante :
+
+\begin{coro1}
+On a l'équivalence :
+\[ \rho_0 < 1 \iff \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{1}{2} + \frac{2\ii-1}{6}\right) + (\ii-1) < q^2.\]
+\end{coro1}
+
+Pour conclure cette section et donner des valeurs concrètes, on supposera que le diviseur à l'étage maximal est de degré 
+\[d_{\ii} = 2g_{\ii} \leq \ii q + \dfrac{\ii(\ii-1)}{2}.\]
+Notons que cette valeur du degré permet à la fois d'avoir égalité sur la dimension du code grâce à Riemann-Roch, et en même temps d'avoir un ratio "relativement faible" sur le code que l'on veut replier, puisque l'on sait que les repliement successifs vont l'augmenter. \\
+Dans ce cas particulier, la condition du corollaire 2 devient
+
+\[ \rho_0 < 1 \iff \ii(q+1) + \dfrac{\ii(\ii-1)}{2}\cd \left(q+\frac{1}{2} + \frac{2\ii-1}{6}\right) -1 < q^2.\]
+
+Notons qu'il s'agit d'un polynôme de degré 3 en $\ii$, et que pour déterminer la valeur de $\ii$ en fonction de $q$, il nous faut prendre la partie entière de la plus grande racine de ce polynôme. \\
+Le tableau ci-dessous donne différents paramètres sur notre suite de code pour différents choix de $q$.
+
+\newpage
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+$q$ & $\ii$ & $n_{\ii}$ & $k_{\ii}$ & $n_0$ & $k_0$ & $\rho_0$ & majorant sur $\rho_0$ \\ 
+\hline
+8 & 3 & $2^{15}$ & $2^{12}$ & 64 & 49 & 0,766 & 0,844 \\
+\hline
+16 & 4 & $2^{24}$ & $2^{21}$ & 256 & 166 & 0,648 & 0,676 \\
+\hline
+27 & 6 & $2^{38}$ & $2^{34}$ & 729 & 597 & 0,819 & 0,833 \\
+\hline
+32 & 7 & $2^{45}$ & $2^{41}$ & 1024 & 947 & 0,925 & 0,936 \\
+\hline
+64 & 10 & $2^{72}$ & $2^{68}$ & 4096 & 3680 & 0,898 & 0,902 \\
+\hline
+\end{tabular}
+\end{center}
+
+\s
+
+\section{Une tour récursive optimale}
+
+\s
+
+\subsection{Définitions et propriétés}
+
+\s
+
+Dans cette section, on s’intéressera à une tour récursive, introduite et prouvée optimale par Garcia et Stichtenoch. Cette section s'appuie sur l'article de G. Oliveira et L. Quoos, \it{Bases for Riemann-Roc Spaces of One-Point Divisors on an Optimal Tower of Function Fields} \rm.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
