@@ -88,6 +88,8 @@
 \newcommand{\f}{\mathbb{F}}
 \newcommand{\ii}{i_{\rm{max}}}
 
+\newcommand{\jade}[1]{{\color{blue!50!red}#1}}
+
 \begin{document}
 
 \begin{center}
@@ -134,7 +136,7 @@ En appliquant ceci de manière récursive dans la tour, on obtient le lemme suiv
 \begin{enumerate}
 \item $P_{\infty}^{(0)}$ est l'unique place qui se ramifie dans la tour;
 \item Pour $i \geq 1$, on a 
-\[(x_i)^{H_i} = (q+1)^i (P^{(i)} - P_{\infty}^{(i)},\]
+\[(x_i)^{H_i} = (q+1)^i \left(P^{(i)} - P_{\infty}^{(i)}\right),\]
 $P^{(i)}$ étant l'unique zéro commun de $x_0,...,x_i$;
 \item Pour $i \geq 1$, on a 
 \[(x_{i-1})^{H_i} = (q+1)^{i-1}S^{(i)} - q(q+1)^{i-1}P_{\infty}^{(i)},\]
@@ -225,16 +227,16 @@ L'idée est la suivante : Pour s'assurer que les entiers $\rm{deg}(G_{i-1}-E_{i,
 \[\rm{max}\left(\N \backslash \mathcal{H}\left(P^{(i-1)}_{\infty}\right)\right) \leq 2g_{i-1} -1.\]
 Ainsi, pour tout entier $i \leq \ii$, on construit le replié $G_{i-1}$ de $G_i := r_i \cd P^{(i)}_{\infty}$ en posant 
 \[G_{i-1} := \left(\left\lfloor \dfrac{r_i}{q} \right\rfloor + 2g_{i-1}\right) \cd P^{(i-1)}_{\infty}.\]
-De cette manière, on est sur de pouvoir trouver des fonctions équilibrantes. La contrepartie est que les ratios successifs des codes repliés augmentent, et il faut s'assurer que le code sur $\mathbb{P}^1$ ne soit pas trivial, ie. de ratio $> 1$. \\
+De cette manière, on est sur de pouvoir trouver des fonctions équilibrantes. La contrepartie est que les rendements successifs des codes repliés augmentent, et il faut s'assurer que le code sur $\mathbb{P}^1$ ne soit pas trivial, ie. de rendement $> 1$. \\
 Dans la section suivante, on étudiera cette question. En particulier, on cherche à déterminer $\ii$ en fonction de $q$, de sorte que le code $\mathcal{C}_0$ sur $\mathbb{P}^1$ soit non trivial.
 
 \newpage
 
-\subsection{Majoration du ratio sur $\mathbb{P}^1$ et recherche de $\ii$}
+\subsection{Majoration du rendement sur $\mathbb{P}^1$ et recherche de $\ii$}
 
 \s
 
-Afin de contrôler les ratios des différents code dans la tour, commençons par remarquer qu'ils forment une suite croissante, et que le plus gros ratio est celui du code $\mathcal{C}_0$. Afin de majorer ce ratio, on pourra majorer le degré $r_0$ du diviseur $G_0$ sur $\mathbb{P}^1$ (puisque ce de degré est pratiquement égal à la dimension du code). \\
+Afin de contrôler les rendements des différents code dans la tour, commençons par remarquer qu'ils forment une suite croissante, et que le plus gros rendement est celui du code $\mathcal{C}_0$. Afin de majorer ce rendement, on pourra majorer le degré $r_0$ du diviseur $G_0$ sur $\mathbb{P}^1$ (puisque ce de degré est pratiquement égal à la dimension du code). \\
 Nos diviseurs repliés étant construit de manière récursive, on peut estimer tous les degrés des diviseurs repliés.
 
 \begin{lem1}
@@ -279,7 +281,7 @@ En utilisant cette majoration du genre et le lemme 5 pour estimer $d_0$, on a
 
 \begin{coro1}
 Avec les notations précédentes, le degré du diviseur $G_0$ du code replié sur $\mathbb{P}^1$ est majoré par 
-\[d_0 \leq \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{1}{2} + \frac{2\ii-1}{6}\right) + (\ii-1)  \]
+\[d_0 \leq \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\ii}{3}\right) + (\ii-1)  \]
 \end{coro1}
 
 \begin{proof}
@@ -289,29 +291,31 @@ d_0 &\leq \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \sum\limits_{k=1}
 	&= \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \sum\limits_{k=0}^{\ii-1} \left\lfloor \dfrac{2g_k}{q^k}\right\rfloor + (\ii-1) \\
 	& \leq \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \sum\limits_{k=0}^{\ii-1} \left(kq + \dfrac{k(k-1)}{2}\right) + (\ii-1) \\
 	&= \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + (q-\frac{1}{2}) \cd \dfrac{\ii(\ii-1)}{2} + \dfrac{\ii(\ii-1)(2\ii-1)}{12} + (\ii-1) \\
-	&= \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{1}{2} + \frac{2\ii-1}{6}\right) + (\ii-1) \\
+	&= \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\ii}{3}\right) + (\ii-1) \\
 \end{align*}
 \end{proof}
 
-On peut alors déterminer une condition sur $\ii$ en fonction de $q$ pour que le code sur $\mathbb{P}^1$ soit de ratio $< 1$. En effet, ce ratio $\rho_0$ peut être estimer par 
+On peut alors déterminer une condition sur $\ii$ en fonction de $q$ pour que le code sur $\mathbb{P}^1$ soit de rendement $< 1$. En effet, ce rendement $\rho_0$ peut être estimé par 
 \[ \rho_0 = \dfrac{k_0}{n_0} = \dfrac{d_0+1}{n_0} \sim \dfrac{d_0}{n_0}.\]
 Si le code à l'étage maximal est construit de longueur maximale, ie. $n_{\ii} = q^{\ii+2}$, on a $n_0=q^2$. On obtient la condition suivante :
 
 \begin{coro1}
 On a l'équivalence :
-\[ \rho_0 < 1 \iff \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{1}{2} + \frac{2\ii-1}{6}\right) + (\ii-1) < q^2.\]
+\[ \rho_0 < 1 \iff \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\ii}{3}\right) + (\ii-1) < q^2.\]
 \end{coro1}
 
 Pour conclure cette section et donner des valeurs concrètes, on supposera que le diviseur à l'étage maximal est de degré 
-\[d_{\ii} = 2g_{\ii} \leq \ii q + \dfrac{\ii(\ii-1)}{2}.\]
-Notons que cette valeur du degré permet à la fois d'avoir égalité sur la dimension du code grâce à Riemann-Roch, et en même temps d'avoir un ratio "relativement faible" sur le code que l'on veut replier, puisque l'on sait que les repliement successifs vont l'augmenter. \\
+\[d_{\ii} = 2g_{\ii} \leq \ii q^{\ii+1} + \dfrac{\ii(\ii-1)}{2}q^{\ii}.\]
+Notons que cette valeur du degré permet à la fois d'avoir égalité sur la dimension du code grâce à Riemann-Roch, et en même temps d'avoir un rendement "relativement faible" sur le code que l'on veut replier, puisque l'on sait que les repliement successifs vont l'augmenter. \\
 Dans ce cas particulier, la condition du corollaire 2 devient
 
-\[ \rho_0 < 1 \iff \ii(q+1) + \dfrac{\ii(\ii-1)}{2}\cd \left(q+\frac{1}{2} + \frac{2\ii-1}{6}\right) -1 < q^2.\]
+\[ \rho_0 < 1 \iff \ii(q+1) + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\ii}{3}\right) -1 < q^2.\]
 
 Notons qu'il s'agit d'un polynôme de degré 3 en $\ii$, et que pour déterminer la valeur de $\ii$ en fonction de $q$, il nous faut prendre la partie entière de la plus grande racine de ce polynôme. \\
 Le tableau ci-dessous donne différents paramètres sur notre suite de code pour différents choix de $q$.
 
+
+\jade{$\ii = \sqrt{q}$ marche toujours.}
 \newpage
 
 \begin{center}
