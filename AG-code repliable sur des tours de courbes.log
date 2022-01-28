@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.10.19)  28 JAN 2022 10:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.10.19)  28 JAN 2022 14:27
 entering extended mode
 **"./AG-code repliable sur des tours de courbes.tex"
 (AG-code repliable sur des tours de courbes.tex
@@ -584,20 +584,20 @@ File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
 (AG-code repliable sur des tours de courbes.aux)
 \openout1 = `"AG-code repliable sur des tours de courbes.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
 
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -620,19 +620,19 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 (C:\Program Files\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 93.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 96.
 
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 93.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 96.
 
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Package xypdf Info: Line width: 0.39998pt on input line 93.
+Package xypdf Info: Line width: 0.39998pt on input line 96.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -671,42 +671,45 @@ Package xypdf Info: Line width: 0.39998pt on input line 93.
 [1
 
 {C:/Users/jade/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3]
-Overfull \hbox (3.38568pt too wide) in paragraph at lines 269--271
+Overfull \hbox (3.38568pt too wide) in paragraph at lines 272--274
 []\OT1/cmr/m/n/10 A ce stade, re-mar-quons si $\OML/cmm/m/it/10 kgeq\OT1/cmr/m/
 n/10 2$, on a $[] = [] \OMS/cmsy/m/n/10  []$\OT1/cmr/m/n/10 , en mi-no-rant le
  denominateur
  []
 
-[4] [5] [6] (AG-code repliable sur des tours de courbes.aux) ) 
+[4] [5]
+
+LaTeX Warning: Command \l invalid in math mode on input line 338.
+
+[6] [7] (AG-code repliable sur des tours de courbes.aux) ) 
 Here is how much of TeX's memory you used:
- 16338 strings out of 478864
- 297988 string characters out of 2858519
- 646092 words of memory out of 3000000
- 33943 multiletter control sequences out of 15000+600000
+ 16342 strings out of 478864
+ 298036 string characters out of 2858519
+ 646128 words of memory out of 3000000
+ 33947 multiletter control sequences out of 15000+600000
  413088 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  92i,19n,97p,3278b,207s stack positions out of 5000i,500n,10000p,200000b,80000s
-<C:/Program Files
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/font
-s/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pf
-b><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program
- Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb
-><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program F
-iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/ms
-bm10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb
->
-Output written on "AG-code repliable sur des tours de courbes.pdf" (6 pages, 24
-2622 bytes).
+<C:/Program Files/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C
+:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Fil
+es/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:
+/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/font
+s/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10
+.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on "AG-code repliable sur des tours de courbes.pdf" (7 pages, 24
+9526 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
+ 119 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

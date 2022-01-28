@@ -89,6 +89,9 @@
 \newcommand{\ii}{i_{\rm{max}}}
 
 \newcommand{\jade}[1]{{\color{blue!50!red}#1}}
+\newcommand{\Floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\calC}{\mathcal{C}}
 
 \begin{document}
 
@@ -253,7 +256,7 @@ Afin de donner des valeurs plus concrètes, il nous faut choisir les supports de
 
 Le seul élément qu'il nous manque pour majorer $d_0$ est une majoration sur les genre $g_i$ dans la tour. On s'appuie sur le résultat suivant :
 
-\begin{prop1}
+\begin{prop1}\label{prop:maj_genus_herm}
 Pour $i \geq 1$, on a
 \[g_i \leq \dfrac{q^{i+1}}{2} \sum\limits_{k=1}^i \binom{i}{k} \dfrac{1}{q^{k-1}} \leq \dfrac{iq^{i+1}}{2} \sum\limits_{k=1}^i \left(\dfrac{i}{q}\right)^{k-1} \leq \dfrac{i}{2}q^{i+1} + \dfrac{i(i-1)}{4}q^i,\]
 la dernière majoration utilisant le fait que $i-1 \leq q$.
@@ -299,7 +302,7 @@ On peut alors déterminer une condition sur $\ii$ en fonction de $q$ pour que le
 \[ \rho_0 = \dfrac{k_0}{n_0} = \dfrac{d_0+1}{n_0} \sim \dfrac{d_0}{n_0}.\]
 Si le code à l'étage maximal est construit de longueur maximale, ie. $n_{\ii} = q^{\ii+2}$, on a $n_0=q^2$. On obtient la condition suivante :
 
-\begin{coro1}
+\begin{coro1}\label{cor:cdt_deg_herm}
 On a l'équivalence :
 \[ \rho_0 < 1 \iff \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\ii}{3}\right) + (\ii-1) < q^2.\]
 \end{coro1}
@@ -315,7 +318,27 @@ Notons qu'il s'agit d'un polynôme de degré 3 en $\ii$, et que pour déterminer
 Le tableau ci-dessous donne différents paramètres sur notre suite de code pour différents choix de $q$.
 
 
-\jade{$\ii = \sqrt{q}$ marche toujours.}
+\jade{Pour espérer avoir une famille de 'gros' codes à rendement constant, on va prendre un diviseur du haut avec un degré plus gros. la dépendance en le degré tant linéaire, ça devrait passer !}
+
+\begin{prop1}
+	Let us assume that $\ii=\sqrt{q}$ and that the divisor $G_{\ii}$ has degre $d_{\ii} = \kappa \sqrt{q}g_{\ii}$ for some $\kappa \in (0,1)$.
+	Then \jade{the last RS code} is non trivial.
+\end{prop1}
+\begin{proof}
+	Using Proposition \ref{prop:maj_genus_herm} to bound the genus from above, we have
+	
+	\[ \Floor{\dfrac{d_{\ii}}{q^{\ii}}} \leq  \dfrac{\kappa q}{2} \cd \left( q + \dfrac{\sqrt{q}-1}{2} \right)\]
+	By Corollary \ref{cor:cdt_deg_herm}, a sufficient condition to have $\rho_0 < 1$ is
+	\[\dfrac{\kappa q}{2} \cd \left( q + \dfrac{\sqrt{q}-1}{2} \right)+\dfrac{\sqrt{q}(\sqrt{q}-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\sqrt{q}}{3}\right) + \sqrt{q}-1 < q^2.\]
+	The right hand--side term is an increasing function of $\kappa$. Hence, if it is satisfied for $\kappa=1$, it holds for every $\kappa \in (0,1)$. Simplifying this inequation, we get 
+	\[6(1+\kappa - 2) q^2 + (3\kappa-4)q\sqrt{q}-3(\kappa+2)q+16\sqrt{q}-12 <0.\]
+	To prove that the above inequality is true for $\kappa=1$, it enough to note that the 3-degree polynomial function $-x^3-6x^2+16x-12$ takes negative value for any positive $x$.
+\end{proof}
+
+Take an integer $r$. Let us assume that $q=p^{2r}$ and take $\kappa=p^{-\ell}$ for an $0<\l<2r$. Then the code $C_L\left(H_{p^r},H_{p^r}( \F_{p^{4r}} )\setminus\{ {P_\infty}^{(p^r)} \}, \kappa p^3rP_\infty^{(p^r)}\right)$ is foldable. When $p \rightarrow \infty$, the rate of $\calC$ tends to $\dfrac{\kappa}{2}$ and its relative minimum distance is bounded from below by $1-\dfrac{\kappa}{2}-\dfrac{\kappa}{4p^r}$.
+\jade{J'admets que c'est dégueulasse écrit comme ça mais on se comprend !}
+
+
 \newpage
 
 \begin{center}
