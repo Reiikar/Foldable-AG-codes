@@ -1,0 +1,355 @@
+\documentclass[10pt]{article}
+
+\input{header.tex}
+
+\title{Families of codes from tower of curves which are compatible with proximity testing}
+
+\author{Sarah Bordage, Matthieu Lhotel, Jade Nardi, Hugues Randriam}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+Étant donnée une tour de corps de fonctions $(F_i)_{i \geq 0}$, notre objectif sera de construire une suite de codes géométriques $(\mathcal{C}_i)$ sur $F_i$ ($i \geq 0$); de tel sorte que l'on puisse réduire un test de proximité au "gros" code $C_i$ à un test de proximité sur ses replies successifs (ie. les codes $\mathcal{C}_j$ construit sur les $F_j$, pour $j \leq i$. \\
+Pour cela, on considérera différentes tours de corps de fonctions, qui vérifient de "bonnes propriétés", du type :
+\begin{enumerate}
+\item On est capable de décomposer un espace de Riemann-Roch sur $F_i$ avec des espaces de Riemann-Roc sur les courbes quotients définies par les $F_j$, $j \leq i$;
+\item On est en mesure de calculer de manière efficace les espaces de Riemann-Roch dans la tour;
+\item On connaît la ramification dans la tour $(F_i)$, ainsi qu'une formule du genre $g_i = g(F_i)$ pour tout $i$;
+\item Les corps de fonctions successifs $F_i$ possèdent "beaucoup" de points rationnels, ce qui nous permet de construire des codes géométriques assez longs.
+\end{enumerate}
+
+\subsection{Foldables codes from tower of curves}
+
+\todo{Rappeler les cdts pour les codes foldables. Un beau copier-coller dessous !}
+
+
+
+\begin{definition}\label{def-div_compatible}
+	Let $D_i \in \Div(\calC_i)$ and $\mu_i \in \F(\calC_i)$ such that 
+	\begin{equation}\label{eq:def-mu_i}
+		\gamma_i \cdot \mu_i = \zeta_i \mu_i.
+	\end{equation} For any $j \in \range{p_i}$, we define the divisor 
+	\begin{equation}\label{eq:def-Eij}
+		E_{i,j}\mydef \Floor{\frac{1}{p_i}{\pi_i}_*( D_i + j(\mu_i))} \in \Div(\mathcal{C}_{i+1}).
+	\end{equation}
+	
+	A divisor $D_{i+1} \in \Div(\calC_{i+1})$ is said to be \emph{compatible with $(D_i,\mu_i)$} if all the following assertions hold.
+	\begin{enumerate}
+		\item $D_{i+1}$ is supported by $\Gamma_{i+1}$-fixed points, 
+		\item for every $j \in \range{p_i}$, $E_{i,j} \leq D_{i+1}$,
+		\item  for every $j \in \range{p_i}$, there exists a function $\nu_{i+i,j}\in \F(\calC_{i+1})$ such that
+		\begin{equation}\label{eq:def-nu_i,j}
+			\poles{\nu_{i+i,j}}=D_{i+1} - E_{i,j}.	
+		\end{equation}
+	\end{enumerate}
+\end{definition}
+
+
+The divisors $E_{i,j}$ in \eqref{eq:def-Eij} coincide with those in Theorem \ref{th:kani} and thus satisfy
+\begin{equation}\label{eq:decomposition}
+	L_{\calC_i}(D_i)= \bigoplus_{j=0}^{p_i-1} \mu_i^j \pi_i^* L_{\calC_{i+1}}(E_{i,j}).
+\end{equation}
+The first requirement ensures that the support of $D_{i+1}$ does not intersect with the set of evaluation points $\calP_{i+1}$. The second one implies that $L(E_{i,j}) \subseteq L(D_{i+1})$. The last condition means that for every $f_j \in L(E_{i,j})$, the function $\nu_{i+1, j}f_j$ lies in $L(D_{i+1})$.
+
+Among those three requirements, the third is definitely the most compelling and requires some geometric knowledge about the curves $C_i$. Indeed, on a general curve, not every effective divisor is the poles locus of a function and characterizing which effective divisors arise this way is at the heart of the Weierstrass gaps theory. Nonetheless, the existence of the balancing functions $\nu_{i+1,j}$ happens to be the main ingredient in Lemma \ref{lem:why_nuij}, which takes a prominent role in the construction of the folding operators.
+
+\begin{definition}[$(\mu_i)$-compatibility]\label{def-mu_i_compatible}
+	Let $(\calC_i)$ be a $(\calC,\calG)$-sequence. For every $i \in \range{r}$, take $\mu_i \in \F(\calC_i)$ satisfying \eqref{eq:def-mu_i}. A sequence of divisor $(D_i) \in \Div(\calC_i)$ is said to be \emph{$(\mu_i)$-compatible} if for every $i \in \range{r}$, the divisor $D_{i+1}$ is $(D_i,\mu_i)$-compatible.
+\end{definition}
+
+\jade{Cette hypothèse a été relaxée :}
+We have now described all the key components to formally define the notion of foldable codes. However, to ensure a good soundness of the protocol, we add a constraint on each divisor $D_{i+1}$ regarding $D_i$. Indeed, as illustrated by Example \ref{ex:bad_kummer}, even though there exists a $(D_i,\mu_i)$-compatible divisor $D_{i+1}$, its degree may be unexpectedly substantial, which would likely deteriorate the relative minimum distance of $C_{i+1}$. We thus demand $D_{i+1}$ to be equal to one of the divisors $E_{i,j}$ \eqref{eq:def-Eij} that appear in the decomposition \eqref{eq:decomposition} of $L_{\calC_i}(D)$.
+
+\jade{Est-ce qu'on peut mettre les tours dans le cadre de cette définition?}
+
+\begin{definition}[Foldable AG codes]\label{def:good_properties}
+	Let $C =C(\calC,\calP,D)$ be an AG-code. This code is said to be \emph{foldable} if the following conditions are satisfied.
+	\begin{itemize}
+		\item There exists a finite solvable group $\calG \in \Aut(\calC)$ that acts freely on $\calP$ : a composition series of $\calG$ $\eqref{diag:seq_groups}$ provides a $(\calC,\calG)$-sequence of curves $(\calC_i)$;
+		\item There exists $e \in (0,1)$ such that $\size{\calG} > \size{\calP}^e$;
+		\item There exist a sequence $(\mu_i) \in \F(\calC_i)$ satisfying \eqref{eq:def-mu_i} and a sequence $(D_i) \in \Div(\calC_i)$ that is $(\mu_i)$-compatible such that for every $i \in \range{r}$,
+		\begin{equation}\label{eq:cdt_Di+1}
+			\exists \: j \in \range{p_i} \text{ such that } D_{i+1}=E_{i,j},
+		\end{equation}
+		where the divisors $E_{i, j}$ are defined as per Definition \ref{def-div_compatible}.
+		
+	\end{itemize}
+	%Moreover, we say that $C$ is \emph{efficiently foldable} if $\size{\calG}$ is a smooth integer and the functions $\nu_{i+1, j} \in \F(\calC_{i+1})$ can be evaluated at a point $P \in \calP_{i+1}$ using a number of arithmetic operations which is independent of $\size{\calP}$.
+\end{definition}
+
+\subsection{Relaxing foldability conditions}
+
+
+
+\section{La tour Hermitienne}
+
+\subsection{Preliminaries}
+
+\jade{J'ai appelé les corps $F_i$ pour qu'ils ne change pas de nom selon le type de tours. En plus, ça nous évite une confusion possible avec les semigroupes de Weierstrass.}
+
+We consider the sequence of function fields $\calF=(F_i)_{i\geq 0}$ over $\F_{q^2}$ that is defined recursively by $F_0=\F_{q^2}(x_0)$ and $F_i = F_{i-1}(x_i)$ with equations
+\[x_i^q+x_{i} = x_{i-1}^{q+1} \text{ for } i\geq 1.\]
+For $i=1$, the field $F_1$ is the function field of the Hermitian curve over $\F_{q^2}$.
+
+The tower $(H_i)$ is a tower of Artin-Schreier extensions, which have been extensively studied \jade{REF}.
+
+\fr{Commençons par étudier la ramification dans la tour :}
+
+Let us denote by $P_{\infty}^{(0)}$ the unique pole of the function $x_0$ in $F_0$.
+
+\begin{lemma}\cite[Proposition 3.7.8]{S08}
+	Let $j \geq 1$. The place $P_{\infty}^{(0)}$ est totally ramified in $F_j$, and its unique extension, denoted by $P_{\infty}^{(j)}$, satisfies
+\[e\left(P_{\infty}^{(j)}|P_{\infty}^{(0)}\right) = [F_j:F_0]=q^j.\]
+\end{lemma}
+
+
+The properties of the tower $\calF$ yields from those of the basic function field $F=\F_{q^2}(x,y)$, where $y^q+y=x^{q+1}$. Let us denote by $P^{(0)}$ the unique zero of the function $x$ on $\F_{q^2}$, so that
+\[(x)^{\F_{q^2}} = P^{(0)} - P^{(0)}_{\infty}.\]
+Then
+\[(y)^H = (q+1)P^{(1)} - (q+1)P^{(1)}_{\infty};\]
+where $P^{(1)}$ is the unique extension of $P^{(0)}$. Moreover, $P^{(1)}$ is the unique common zero of $x$ and $y$ in $F$.
+
+By iteratively using these divisor decompositions, we get formula for the principal divisors $(x_i)^{F_i}$ at each step.
+\begin{lemma}
+\begin{enumerate}
+\item $P_{\infty}^{(0)}$ is the unique place that is ramified in the tower $\calF$;
+\item For $i \geq 1$, we have 
+\[(x_i)^{F_i} = (q+1)^i \left(P^{(i)} - P_{\infty}^{(i)}\right),\]
+where $P^{(i)}$ is the unique common zero of the functions $x_0,...,x_i$;
+\item For $i \geq 1$, we have 
+\[(x_{i-1})^{F_i} = (q+1)^{i-1}S^{(i)} - q(q+1)^{i-1}P_{\infty}^{(i)},\]
+%where $S^{(i)} = \sum\limits_{j=1}^q P_j^{(i)}$, avec $P_j^{(i)} \mid P^{(i-1)}$.
+where $ S^{(i)} = \sum_{Q\mid P^{(i-1)}} Q$ is the sum of the $q$ places lying over $P^{(i-1)}$.
+\end{enumerate}
+\end{lemma}
+
+Let $g_i$ be the genus of $F_i$. \jade{$\leftarrow$ on peut dire ça comme ça ?} An explicit formula was given by Pellikaan, Shen and Wee \cite[Proposition 4]{PSW91}. We have $g_0=0$ and for $i\geq 1$, 
+
+\begin{equation}\label{eq:genus_herm}
+	g_i =\dfrac{1}{2} \cd \left(\sum\limits_{k=1}^i q^{i+1} \cd \left(1+\frac{1}{q}\right)^{k-1} +1 -(1+q)^i\right).
+\end{equation}
+
+For every $i \geq 0$, the number of $\F_{q^2}$--rational places in $F_i$ is given by
+\[N_i \mydef \#F_i(\F_{q^2}) = q^{i+2}+1.\]
+
+In order to obtain a sequence of foldable codes, we need to describe the Riemann-Roch spaces on a certain step from Riemann-Roch spaces on lower curves. A priori that Kani's theorem does not apply, so we will have to find a decomposition by hand. In particular, it is reasonable to assume that the divisors associated with our codes are only supported by the single branched point, i.e. $P^{(i)}_{\infty}$. We therefore find ourselves having to study the behaviour of Riemann-Roch spaces of the form 
+\[L_{F_i}\left(mP^{(i)}_{\infty}\right), \ pour \ i \geq 1.\] 
+\jade{On va appeler les degrés $m$ pour garder $r$ pour le nombre de rounds.}
+
+For a given $i \geq 0$, $P^{(i)}_{\infty}$ is the unique pole of the functions $x_0,...,x_i$, which gives an explicit basis of the Riemman-Roch space associated to a multiple of $P^{(i)}_{\infty}$.
+
+\begin{lemma}\label{lem:basis_herm}
+For all $i \leq 1$ and $m \leq 1$, we have 
+\[L_{F_i}(mP^{(i)}_{\infty}) = \Span\left\{x_0^{a_0} \cdots x_i^{a_i} \ | \ 0 \leq a_0 \ , \ 0 \leq a_j \leq q-1 \text{ and } \sum\limits_{j=0}^i a_jq^{i-j}(q+1)^j \leq m \right\}.\]
+\end{lemma}
+
+\subsection{\fr{Construction de codes repliables}}
+
+Let us fix $i \geq 0$. We aim to define a sequence of AG codes $C_i$ defined by 
+\[C_i \mydef C_L(F_i,\calP_{i},G_i) \text{ where } \calP_{i} \subseteq F_i(\F_{q^2}) \setminus \{P_\infty^{(i)}\} \text{ and } G_i = d_iP^{(i)}_{\infty}.\]
+Even though Kani's theorem does not hold, the basis of the Riemman-Roch space (Lemma \ref{lem:basis_herm}) enables us to get a similar decomposition, given in the following proposition.
+
+\begin{proposition} 
+	For $0 \leq j \leq q-1$, we set
+	\[E_{i,j} \mydef \left\lfloor \frac{1}{q} \pi_*\left(G_i-j(x_i)^{F_i}_{\infty}\right)\right\rfloor,\]
+	\fr{où $\pi : F_i \rightarrow F_{i-1}$ est indépendant de $i$.} \jade{Vraiment ??} Then 
+\[L_{F_i}(G_i) = \bigoplus\limits_{j=0}^{q-1} x_i^j \pi^*\left(L_{F_{i-1}}(E_{i,j})\right).\]
+\end{proposition}
+
+Following the original definition of \cite{BN20}, we may define $G_{i-1}$ as $E_{i,0} = \left\lfloor \dfrac{d_i}{q} \right\rfloor \cd P^{(i-1)}_{\infty}$. This way, we get \todo{Donner un numéro/nom à cette cdt.}
+\[G_{i-1} \geq E_{i,j} \ , \ pour \ tout \ 0 \leq j \leq q-1.\] 
+Howver, to get foldable codes, we need the existence of balancing functions  $\nu_{i-1,j} \in F_{i-1}$ (pour tout $j$) such that 
+\begin{equation}\label{eq:balancing_fct_herm}
+	G_{i-1}-E_{i,j} = (\nu_{i-1,j})^{F_i}_{\infty}.
+\end{equation}
+
+\todo{num/nom cdt}
+
+In our case, for every $0 \leq j \leq q-1$, we have
+\[G_{i-1}-E_{i,j} = \left\lfloor \dfrac{r_i-j(q+1)^i}{q}\right\rfloor \cd P^{(i-1)}_{\infty}.\]
+To find balancing functions we are led to study the Weierstrass semigroup of $P^{(i-1)}_{\infty}$, denoted by $\calH\left(P^{(i-1)}_{\infty}\right)$. The generators of this semigroup are well-known \todo{REF}:
+
+\[\calH\left(P^{(i-1)}_{\infty}\right) = \left \langle q^{i-k}(q+1)^k \ , \ 0\leq k \leq i-1 \right\rangle_{\N}.\]
+
+Therefore, choosing $G_{i-1}$ as $E_{i,0}$ \jade{would work} if and only for every $1 \leq j \leq q-1$
+\[ \left\lfloor \dfrac{r_i-j(q+1)^i}{q}\right\rfloor \in \calH\left(P^{(i-1)}_{\infty}\right).\]
+However, when $i$ increases, this condition is never satisfied. We have to choose $G_{i-1}$ differently.  To ensure that 
+$\deg(G_{i-1}-E_{i,j})$ is never a Weierstrass gap for $P_{\infty}^{(i-1)}$, we increase the degree $d_{i-1}$ of $G_{i-1}$. As we know that \todo{ref}
+\[\rm{max}\left(\N \backslash \calH\left(P^{(i-1)}_{\infty}\right)\right) \leq 2g_{i-1} -1,\]
+we define $G_{i-1}\mydef d_{i-1} P^{(i-1)}_{\infty}$ where
+\begin{equation}\label{eq:deg_herm}
+d_{i-1} \mydef \Floor{ \dfrac{d_i}{q}} + 2g_{i-1}.
+\end{equation}
+
+
+In this manner, we are sure to find balancing functions. The counterpart is that rates of the folded codes increase drastically, and one must ensure that the code on $\mathbb{P}^1$ is not trivial, \textit{i.e.} of rate $< 1$. \\
+
+
+
+\subsection{\fr{Majoration du rendement sur $\mathbb{P}^1$ et recherche de $\ii$}}
+
+Let us denote by $\ii$ the level in the tower of curves on which the code to which we want test proxmity is defined.
+\jade{Phrase caca.}
+
+
+In order to control the rates of the different codes along the tower, let us first notice that they form an increasing sequence, and that the largest rate is that of the code Reed-Solomon code $\mathcal{C}_0$. In order to bound this rate from above, we shall compute the degree $d_0$ of the divisor $G_0$ on $\mathbb{P}^1$. \\
+
+\begin{lemma}\label{lem:deg_herm}
+for $1 \leq j \leq \ii$, we have 
+\[d_{\ii -j} \leq \left\lfloor \dfrac{d_{\ii}}{q^j}\right\rfloor + \sum\limits_{k=1}^j \left\lfloor \dfrac{2g_{\ii -k}}{q^{j-k}}\right\rfloor + (j-1).\]
+Hence 
+\[d_0 \leq \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \sum\limits_{i=0}^{\ii-1} \left\lfloor \dfrac{2g_i}{q^{i}}\right\rfloor + \ii-1.\]
+
+\end{lemma}
+
+\begin{proof}
+It follows from the definition of the degrees $d_i$ given in Equation \eqref{eq:deg_herm} and by induction on $j$.
+\end{proof}
+
+We are led to bound the genera $g_i$ for $i \leq \ii$. 
+
+\begin{proposition}\label{prop:maj_genus_herm}
+For $i \geq 1$, we have
+\[g_i \leq \dfrac{q^{i+1}}{2} \sum\limits_{k=1}^i \binom{i}{k} \dfrac{1}{q^{k-1}} \leq \dfrac{iq^{i+1}}{2} \sum\limits_{k=1}^i \left(\dfrac{i}{q}\right)^{k-1} \leq \dfrac{i}{2}q^{i+1} + \dfrac{i(i-1)}{4}q^i,\]
+the last inequality holding only if $i-1 < q$.
+\jade{Il faut un strict sinon ça ne fonctionne pas.}
+\end{proposition}
+
+\begin{proof}
+By Equation  \eqref{eq:genus_herm}, we have
+\begin{align*}
+g_i  &=\dfrac{1}{2} \cd \left(\sum\limits_{k=1}^i q^{i+1} \cd \left(1+\frac{1}{q}\right)^{k-1} +\underbrace{1 -(1+q)^i}_{\leq 0}\right) \\
+	&\leq \dfrac{q^{i+1}}{2} \cd \left(\dfrac{1-(1+1/q)^i}{1-(1+1/q)}\right) \\
+	& = \dfrac{q^{i+1}}{2} \cd q \cd ((1+1/q)^i-1) \\
+	& = \dfrac{q^{i+1}}{2} \cd \sum\limits_{k=1}^i \binom{i}{k} \dfrac{1}{q^{k-1}}
+\end{align*}
+Note that if $k \geq 2$, then $\binom{i}{k} = \dfrac{i(i-1) \cdots (i-k+1)}{k(k-1) \cdots 2} \leq \dfrac{i(i-1)^{k-1}}{2}$, by bounding the denominator from below by $2$ and bounding the factors $i-1,i-2,...,i-k+1$ from above by $i-1$. We thus get
+\begin{align*}
+g_i &\leq \dfrac{q^{i+1}}{2} \cd \left( i + \frac{i}{2} \sum\limits_{k=2}^i \left(\dfrac{i-1}{q}\right)^{k-1}\right) \\
+	&= \dfrac{iq^{i+1}}{2} \left( 1 + \frac{1}{2} \cd \left(\frac{i-1}{q}\right) \cd \left(\dfrac{1-(\frac{i-1}{q})^{i-1}}{1-(\frac{i-1}{q})}\right)\right) \\
+		&= \dfrac{iq^{i+1}}{2} \left( 1 + \frac{1}{2q} \cd \dfrac{i-1}{q-i+1} \cd \left(1- \left(\dfrac{i-1}{q}\right)^{i-1}\right)\right)\end{align*}
+Assuming that $i-1 < q$, we have $1- \left(\dfrac{i-1}{q}\right)^{i-1} \leq 1$ and $q-i+1 \geq 1$. Then we obtain 	
+	\[g_i \leq \dfrac{iq^{i+1}}{2} \left( 1 + \frac{i-1}{2q}\right).\]
+\end{proof}
+
+We have now gathered all the ingredients to get an upperbound on $d_0$.
+
+\begin{corollary}
+The degree $d_0$ of the divisor $G_0$ on $\mathbb{P}^1$ is bounded from above by 
+\[d_0 \leq \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + (\ii-1)\left( 1+\dfrac{(\ii-1)}{2} \left(q-\frac{2}{3} + \frac{\ii}{3}\right) \right) \]
+\end{corollary}
+
+\begin{proof}
+	By the formula of $d_0$ given in Lemma \ref{lem:deg_herm}, it is enough to bound the sum $\sum\limits_{k=0}^{\ii-1} \left\lfloor \dfrac{2g_k}{q^k}\right\rfloor$. By Proposition \ref{prop:maj_genus_herm},
+\begin{align*}
+\sum\limits_{k=0}^{\ii-1} \left\lfloor \dfrac{2g_k}{q^k}\right\rfloor & \leq  \sum\limits_{k=0}^{\ii-1} \left(kq + \dfrac{k(k-1)}{2}\right)  \\
+	&= (q-\frac{1}{2}) \cd \dfrac{\ii(\ii-1)}{2} + \dfrac{\ii(\ii-1)(2\ii-1)}{12} \\
+	&= \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\ii}{3}\right),
+\end{align*}
+which gives the expected result.
+\end{proof}
+
+According to the length of the code $C_{\ii}$, we can determine a sufficient condition on $\ii$ that ensures that the code $C_0$ is not trivial. The rate of $C_0$ is equal to $\dfrac{d_0+1}{n_0}$. The value of $n_0$ depends on $n_{\ii}$.
+
+Let us assume that the code $C_{\ii}$ is obtained by evaluating on the whole set of $\F_{q^2}$--rational points, except for $P_\infty^{(\ii)}$, i.e. 
+\[n_i := \#\calP_i = q^{i+2}.\]
+Then $n_0=q^2$. 
+
+\begin{corollary}\label{cor:cdt_deg_herm}
+If 
+\[ \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\ii}{3}\right) + (\ii-1) < q^2,\]
+then the code $C_0$ is non trivial.
+\end{corollary}
+
+\subsubsection{Families of foldable codes with constant rate}
+
+\jade{Pour espérer avoir une famille de 'gros' codes à rendement constant, on va prendre un diviseur du haut avec un degré plus gros. la dépendance en le degré étant linéaire, ça devrait passer !}
+
+\begin{proposition}
+	Let us assume that $\ii=\sqrt{q}$ and that the divisor $G_{\ii}$ has degre $d_{\ii} = \kappa \sqrt{q}g_{\ii}$ for some $\kappa \in (0,1)$.
+	Then \jade{the last RS code} is non trivial.
+\end{proposition}
+\begin{proof}
+	Using Proposition \ref{prop:maj_genus_herm} to bound the genus from above, we have
+	
+	\[ \Floor{\dfrac{d_{\ii}}{q^{\ii}}} \leq  \dfrac{\kappa q}{2} \cd \left( q + \dfrac{\sqrt{q}-1}{2} \right)\]
+	By Corollary \ref{cor:cdt_deg_herm}, a sufficient condition to have $\rho_0 < 1$ is
+	\[\dfrac{\kappa q}{2} \cd \left( q + \dfrac{\sqrt{q}-1}{2} \right)+\dfrac{\sqrt{q}(\sqrt{q}-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\sqrt{q}}{3}\right) + \sqrt{q}-1 < q^2.\]
+	The right hand--side term is an increasing function of $\kappa$. Hence, if it is satisfied for $\kappa=1$, it holds for every $\kappa \in (0,1)$. Simplifying this inequation, we get 
+	\[6(1+\kappa - 2) q^2 + (3\kappa-4)q\sqrt{q}-3(\kappa+2)q+16\sqrt{q}-12 <0.\]
+	To prove that the above inequality is true for $\kappa=1$, it enough to note that the 3-degree polynomial function $-x^3-6x^2+16x-12$ takes negative value for any positive $x$.
+\end{proof}
+
+Take an integer $r$. Let us assume that $q=p^{2r}$ and take $\kappa=p^{-\ell}$ for an $0<\l<2r$. Then the code $C_L\left(F_{p^r},F_{p^r}( \F_{p^{4r}} )\setminus\{ {P_\infty}^{(p^r)} \}, \kappa p^3rP_\infty^{(p^r)}\right)$ is foldable. When $p \rightarrow \infty$, the rate of $\calC$ tends to $\dfrac{\kappa}{2}$ and its relative minimum distance is bounded from below by $1-\dfrac{\kappa}{2}-\dfrac{\kappa}{4p^r}$.
+\jade{J'admets que c'est dégueulasse écrit comme ça mais on se comprend !}
+
+
+\newpage
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+$q$ & $\ii$ & $n_{\ii}$ & $k_{\ii}$ & $n_0$ & $k_0$ & $\rho_0$ & majorant sur $\rho_0$ \\ 
+\hline
+8 & 3 & $2^{15}$ & $2^{12}$ & 64 & 49 & 0,766 & 0,844 \\
+\hline
+16 & 4 & $2^{24}$ & $2^{21}$ & 256 & 166 & 0,648 & 0,676 \\
+\hline
+27 & 6 & $2^{38}$ & $2^{34}$ & 729 & 597 & 0,819 & 0,833 \\
+\hline
+32 & 7 & $2^{45}$ & $2^{41}$ & 1024 & 947 & 0,925 & 0,936 \\
+\hline
+64 & 10 & $2^{72}$ & $2^{68}$ & 4096 & 3680 & 0,898 & 0,902 \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+\section{Une tour récursive optimale}
+
+
+
+\subsection{Définitions et propriétés}
+
+
+
+Dans cette section, on s’intéressera à une tour récursive, introduite et prouvée optimale par Garcia et Stichtenoch. Cette section s'appuie sur l'article de G. Oliveira et L. Quoos, \it{Bases for Riemann-Roc Spaces of One-Point Divisors on an Optimal Tower of Function Fields} \rm.
+
+
+
+
+\bibliographystyle{alpha}
+\bibliography{biblio_ag_ioppp_towers}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,84 @@
+\usepackage{verbatim}
+\usepackage[utf8]{inputenc}
+\usepackage{pict2e}
+\usepackage{tikz}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools} %pour mathclap
+\usepackage{xcolor}
+%\usepackage{authblk} %Multiples affiliations author\usepackage[all]{xy}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref} % hyperlinks
+\geometry{hmargin=2.5cm,vmargin=1.5cm}
+
+
+%----------- THÉORÈMES ET DÉFINITIONS -------------%
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{hyp}{Hypothesis}
+
+\newtheorem{definition}[theorem]{Definition} 
+% Sarah: je change le style des définitions pour qu'elles soient en italiques car
+% pour les longues définitions on ne sait pas où elles se terminent.
+\theoremstyle{definition} 
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{notation}[theorem]{Notation}
+%--------------------------------------------------%
+
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Div}{Div}
+
+\newcommand\gen[1]{\left\langle #1 \right\rangle}
+\newcommand\fold[1]{\textsf{\textbf{Fold}}\left[#1\right]}
+\newcommand\poles[1]{\left( #1 \right)_\infty}
+\newcommand\zeroes[1]{\left( #1 \right)_0}
+
+\newcommand\mydef{\coloneqq}
+
+\newcommand{\cd}{\cdot}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\ii}{i_{\rm{max}}}
+
+\newcommand{\Floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calP}{\mathcal{P}}
+
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\size}[1]{\left|#1\right|}
+\newcommand{\range}[1]{\set{0,\dots,#1-1}}
+\newcommand{\Range}[2]{\set{#1,\dots,#2}}
+
+%Commentaires :
+
+\newcommand{\jade}[1]{{\color{blue!50!red}#1}}
+\newcommand{\todo}[1]{{\color{red}TODO: #1}}
+\newcommand{\fr}[1]{{\color{green!70!black}#1}}
