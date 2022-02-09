@@ -22,135 +22,6 @@ Pour cela, on considérera différentes tours de corps de fonctions, qui vérifi
 \item Les corps de fonctions successifs $F_i$ possèdent "beaucoup" de points rationnels, ce qui nous permet de construire des codes géométriques assez longs.
 \end{enumerate}
 
-\subsection{Foldables codes from tower of curves}
-
-\todo{Rappeler les cdts pour les codes foldables. Un beau copier-coller dessous !}
-
-
-
-\subsubsection{Sequence of curves}
-Fix a curve $\mathcal{C}$ defined over $\F$ and a finite solvable group $\calG \subseteq \Aut(\mathcal{C})$ whose order is coprime with the characteristic of $\F$. The hypothesis of solvability yields a sequence of subgroups of $\calG$
-\begin{equation}\label{diag:seq_groups}
-	\calG=\calG_0 \vartriangleright \calG_1 \vartriangleright \dots \vartriangleright \calG_r = 1,  
-\end{equation}
-such that $\calG_{i+1}$ is a normal subgroup of $\calG_i$ and the factor group $\Gamma_i := \calG_i /\calG_{i+1} \simeq \Z/p_i \Z$ is a cyclic group of prime order $p_i$. A sequence like \eqref{diag:seq_groups} is not unique but another sequence of this type would have the same length and the same set of factor groups, up to permutation, by Jordan–Hölder theorem.
-
-The group $\Gamma_0$ acts on $\calC_0\mydef \calC$, as a quotient of $\calG$. We thus define the quotient curve $\calC_1 \mydef \calC_0 / \Gamma_0$. The group $\Gamma_1$ is constant on the orbits under $\Gamma_0$. Repeating the process for every $i \in \range{r}$ defines a sequence of curves recursively  as follows:
-\[\mathcal{C}_0:=\mathcal{C} \text{ and } \mathcal{C}_{i+1}=\mathcal{C}_i/\Gamma_i.\]
-We denote by $\pi_i: \mathcal{C}_i \rightarrow \mathcal{C}_{i+1}$ the canonical projection modulo the action of $\Gamma_i$.
-\begin{equation}\label{diag:seq_curves}
-	\begin{tikzcd}
-		\mathcal{C}_0\arrow[loop, distance=14, out=130, in=100,"\Gamma_0"] \arrow[r, two heads, "\pi_0"] & \mathcal{C}_1\arrow[loop, distance=14, out=130, in=100,"\Gamma_1"] \arrow[r, two heads, "\pi_1"] & \dots  \arrow[r, two heads, "\pi_i"] & \mathcal{C}_i\arrow[loop, distance=14, out=130, in=100,"\Gamma_i"] \arrow[r, two heads, "\pi_{i+1}"]& \mathcal{C}_{i+1}\arrow[loop, distance=14, out=130, in=100,"\Gamma_{i+1}"] \arrow[r, two heads] & \dots \arrow[r, two heads,"\pi_{r-1}"] & \mathcal{C}_{r}
-	\end{tikzcd}
-\end{equation}
-
-\jade{On pourrait peut-être en choisir une unique en faisant croître ou décroître les $p_i$.}
-\begin{definition}
-	A sequence of curve constructed as above will be called a \emph{$(\calC,\calG)$-sequence}.
-\end{definition}
-
-\subsubsection{Sequence of codes}\label{subsubsec:def-codes}
-
-We aim to construct a sequence of codes from a $(\calC,\calG)$-sequence of curves, which is compatible with the action at each step.
-
-First, fix an effective divisor $D_0 \in \Div(\mathcal{C}_0)$ supported by $\Gamma_0$-invariant points.
-
-For any $i \in \range{r}$, the factor group $\Gamma_i$ is cyclic of order $p_i$. Write $\zeta_i$ for a primitive $p_i^{th}$ root and $\Gamma_i=\gen{\gamma_i}$.
-
-\paragraph{Divisors.}
-To make our protocol complete and sound, we need to choose at each step a divisor which is compatible with the previous one in the sense of the following definition.
-
-\begin{definition}\label{def-div_compatible}
-	Let $D_i \in \Div(\calC_i)$ and $\mu_i \in \F(\calC_i)$ such that 
-	\begin{equation}\label{eq:def-mu_i}
-		\gamma_i \cdot \mu_i = \zeta_i \mu_i.
-	\end{equation} For any $j \in \range{p_i}$, we define the divisor 
-	\[	E_{i,j}\mydef \Floor{\frac{1}{p_i}{\pi_i}_*( D_i + j(\mu_i))} \in \Div(\mathcal{C}_{i+1}).\]
-	
-	A divisor $D_{i+1} \in \Div(\calC_{i+1})$ is said to be \emph{compatible with $(D_i,\mu_i)$} if all the following assertions hold.
-	\begin{enumerate}
-		\item $D_{i+1}$ is supported by $\Gamma_{i+1}$-invariant points, 
-		\item for every $j \in \range{p_i}$, $E_{i,j} \leq D_{i+1}$,
-		\item  for every $j \in \range{p_i}$, there exists a function $\nu_{i+i,j}\in \F(\calC_{i+1})$ such that $\poles{\nu_{i+i,j}}=D_{i+1} - E_{i,j}$.	
-	\end{enumerate}
-\end{definition}
-
-Among the three requirements for a divisor to be compatible with one of the previous curve, the third is definitely the most compelling. \jade{A détailler.} However, this item happens to be the main ingredient in Lemma \ref{lem:why_nuij}, which takes a prominent role in the choice of the folding operators.
-
-
-\begin{lemma}\label{lem:why_nuij}
-	Let $i \in \range{r}$, $D_i \in \Div(\calC_i)$ and $\mu_i \in \F(\calC_i)$ satisfying Eq. \eqref{eq:def-mu_i}. Consider a divisor $D_{i+1}\in\Div(\calC_{i+1})$ that is compatible with $(D_i,\mu_i)$.
-	
-	Fix $j \in \range{p_i}$. Then a function $g\in \F(\calC_{i+1})$ belongs to $L(E_{i,j})$ if and only if both functions $g$ and $g \nu_{i+1,j}$ belong to $L(D_{i+1})$.
-\end{lemma}
-
-\begin{proof} Assume that $g \in L(E_{i,j})$. Then the second and third items of Def. \ref{def-div_compatible} ensures that $g$ and $g\nu_{i+1,j}$ lie in $L(D_{i+1})$.
-	
-	Conversely, assume that $g$ and $g\nu_{i+1,j}$ belong to  $L(D_{i+1})$ and write $D_{i+1} = \sum n_P P$. The hypotheses on $g$ imply that {$g \in L(D_{i+1}) \cap L(D_{i+1} - (\nu_{i+1,j}))$}. By Lemma 2.6 \cite{MP93}, the function $g$ belongs to $L(D'_{i+1})$, where to divisor $D'_i$ is defined by
-	\[D'_{i+1} \mydef \sum_P n'_P P \text{ where } n'_P \mydef \min(n_P,n_P+v_P(\nu_{i+1,j})).\]
-	Then $D'_{i+1} = D_{i+1} - \poles{\nu_{i+1,j}} = E_{i,j}$ by the third item of Def. \ref{def-div_compatible}.
-\end{proof}
-
-\begin{definition}\label{def-mu_i_compatible}
-	Let $(\calC_i)$ be a $(\calC,\calG)$-sequence. For every $i \in \range{r}$, take $\mu_i$ satisfying Eq. \eqref{eq:def-mu_i}. A sequence of divisor $(D_i) \in \Div(\calC_i)$ is said to be \emph{$(\mu_i)$-compatible} if for every $i \in \range{r}$, the divisor $D_{i+1}$ is $(D_i,\mu_i)$-compatible.
-\end{definition}
-
-
-\begin{definition}\label{def-div_compatible}
-	Let $D_i \in \Div(\calX_i)$ and $\mu_i \in \F(\calX_i)$ such that 
-	\begin{equation}\label{eq:def-mu_i}
-		\gamma_i \cdot \mu_i = \zeta_i \mu_i.
-	\end{equation} For any $j \in \range{p_i}$, we define the divisor 
-	\begin{equation}\label{eq:def-Eij}
-		E_{i,j}\mydef \Floor{\frac{1}{p_i}{\pi_i}_*( D_i + j(\mu_i))} \in \Div(\mathcal{C}_{i+1}).
-	\end{equation}
-	
-	A divisor $D_{i+1} \in \Div(\calX_{i+1})$ is said to be \emph{compatible with $(D_i,\mu_i)$} if all the following assertions hold.
-	\begin{enumerate}
-		\item $D_{i+1}$ is supported by $\Gamma_{i+1}$-fixed points, 
-		\item for every $j \in \range{p_i}$, $E_{i,j} \leq D_{i+1}$,
-		\item  for every $j \in \range{p_i}$, there exists a function $\nu_{i+i,j}\in \F(\calX_{i+1})$ such that
-		\begin{equation}\label{eq:def-nu_i,j}
-			\poles{\nu_{i+i,j}}=D_{i+1} - E_{i,j}.	
-		\end{equation}
-	\end{enumerate}
-\end{definition}
-
-
-The divisors $E_{i,j}$ in \eqref{eq:def-Eij} coincide with those in Theorem \ref{th:kani} and thus satisfy
-\begin{equation}\label{eq:decomposition}
-	L_{\calX_i}(D_i)= \bigoplus_{j=0}^{p_i-1} \mu_i^j \pi_i^* L_{\calX_{i+1}}(E_{i,j}).
-\end{equation}
-The first requirement ensures that the support of $D_{i+1}$ does not intersect with the set of evaluation points $\calP_{i+1}$. The second one implies that $L(E_{i,j}) \subseteq L(D_{i+1})$. The last condition means that for every $f_j \in L(E_{i,j})$, the function $\nu_{i+1, j}f_j$ lies in $L(D_{i+1})$.
-
-Among those three requirements, the third is definitely the most compelling and requires some geometric knowledge about the curves $C_i$. Indeed, on a general curve, not every effective divisor is the poles locus of a function and characterizing which effective divisors arise this way is at the heart of the Weierstrass gaps theory. Nonetheless, the existence of the balancing functions $\nu_{i+1,j}$ happens to be the main ingredient in Lemma \ref{lem:why_nuij}, which takes a prominent role in the construction of the folding operators.
-
-\begin{definition}[$(\mu_i)$-compatibility]\label{def-mu_i_compatible}
-	Let $(\calX_i)$ be a $(\calX,\calG)$-sequence. For every $i \in \range{r}$, take $\mu_i \in \F(\calX_i)$ satisfying \eqref{eq:def-mu_i}. A sequence of divisor $(D_i) \in \Div(\calX_i)$ is said to be \emph{$(\mu_i)$-compatible} if for every $i \in \range{r}$, the divisor $D_{i+1}$ is $(D_i,\mu_i)$-compatible.
-\end{definition}
-
-\jade{Cette hypothèse a été relaxée :}
-We have now described all the key components to formally define the notion of foldable codes. However, to ensure a good soundness of the protocol, we add a constraint on each divisor $D_{i+1}$ regarding $D_i$. Indeed, as illustrated by Example \ref{ex:bad_kummer}, even though there exists a $(D_i,\mu_i)$-compatible divisor $D_{i+1}$, its degree may be unexpectedly substantial, which would likely deteriorate the relative minimum distance of $C_{i+1}$. We thus demand $D_{i+1}$ to be equal to one of the divisors $E_{i,j}$ \eqref{eq:def-Eij} that appear in the decomposition \eqref{eq:decomposition} of $L_{\calX_i}(D)$.
-
-\jade{Est-ce qu'on peut mettre les tours dans le cadre de cette définition?}
-
-\begin{definition}[Foldable AG codes]\label{def:good_properties}
-	Let $C =C(\calX,\calP,D)$ be an AG-code. This code is said to be \emph{foldable} if the following conditions are satisfied.
-	\begin{itemize}
-		\item There exists a finite solvable group $\calG \in \Aut(\calX)$ that acts freely on $\calP$ : a composition series of $\calG$ $\eqref{diag:seq_groups}$ provides a $(\calX,\calG)$-sequence of curves $(\calX_i)$;
-		\item There exists $e \in (0,1)$ such that $\size{\calG} > \size{\calP}^e$;
-		\item There exist a sequence $(\mu_i) \in \F(\calX_i)$ satisfying \eqref{eq:def-mu_i} and a sequence $(D_i) \in \Div(\calX_i)$ that is $(\mu_i)$-compatible such that for every $i \in \range{r}$,
-		\begin{equation}\label{eq:cdt_Di+1}
-			\exists \: j \in \range{p_i} \text{ such that } D_{i+1}=E_{i,j},
-		\end{equation}
-		where the divisors $E_{i, j}$ are defined as per Definition \ref{def-div_compatible}.
-		
-	\end{itemize}
-	%Moreover, we say that $C$ is \emph{efficiently foldable} if $\size{\calG}$ is a smooth integer and the functions $\nu_{i+1, j} \in \F(\calX_{i+1})$ can be evaluated at a point $P \in \calP_{i+1}$ using a number of arithmetic operations which is independent of $\size{\calP}$.
-\end{definition}
-
-\subsection{Relaxing foldability conditions}
-
 
 
 \section{Hermitian tower}
@@ -223,16 +94,21 @@ For all $i \leq 1$ and $m \leq 1$, we have
 \subsection{Construction of foldables AG-codes}
 
 Let us fix $i \geq 0$. We aim to define a sequence of AG codes $C_i$ on the tower of curves $(\calX_i)_{i\geq 0}$ defined by 
-\[C_i \mydef C_L(\calX_i,\calP_{i},G_i) \text{ where } \calP_{i} \subseteq \calX_i(\F_{q^2}) \setminus \{P_\infty^{(i)}\} \text{ and } D_i = d_iP^{(i)}_{\infty}.\]
+\[C_i \mydef C_L(\calX_i,\calP_{i},D_i) \text{ where } \calP_{i} \subseteq \calX_i(\F_{q^2}) \setminus \{P_\infty^{(i)}\} \text{ and } D_i = d_iP^{(i)}_{\infty}.\]
 
 Even though Kani's theorem does not hold, the basis of the Riemman-Roch space (Lemma \ref{lem:basis_herm}) enables us to get a similar decomposition, given in the following proposition.
 
 \begin{proposition} 
 	For $0 \leq j \leq q-1$, we set
-	\[E_{i,j} \mydef \left\lfloor \frac{1}{q} \pi_{i*}\left(G_i-j(x_i)^{F_i}_{\infty}\right)\right\rfloor,\]
+	\[E_{i,j} \mydef \left\lfloor \frac{1}{q} \pi_{i*}\left(D_i-j(x_i)^{F_i}_{\infty}\right)\right\rfloor,\]
 	where $\pi_i : F_i \rightarrow F_{i-1}$. Then 
 \[L_{F_i}(D_i) = \bigoplus\limits_{j=0}^{q-1} x_i^j \pi_i^*\left(L_{F_{i-1}}(E_{i,j})\right).\]
 \end{proposition}
+
+\begin{proof}
+	By Lemma \ref{lem:basis_herm}, $L_{F_i}(D_i)$ is formed by linear combinations of $x_0^{a_0} \cdots x_i^{a_i}$ with non negative exponents  such that $0 \leq a_j \leq q-1$ for $j\neq 1$ and $\sum\limits_{j=0}^i a_jq^{i-j}(q+1)^j \leq m$. As $a_j$ runs in $\{0,\dots,q-1\}$, the proof is concluded by noticing that the function $x_0^{a_0} \cdots x_{i-1}^{a_{i-1}} \in F_{i}$ lies in $L(D_i-j(x_i)^{F_i})$ and then $x_0^{a_0} \cdots x_{i-1}^{a_{i-1}} \in F_{i}$ belongs to $L(E_{i,j})$.
+	
+\end{proof}
 
 Following the original definition of \cite{BN20}, we may define $D_{i-1}$ as $E_{i,0} = \left\lfloor \dfrac{d_i}{q} \right\rfloor \cd P^{(i-1)}_{\infty}$. This way, we get \todo{Donner un numéro/nom à cette cdt.}
 \[D_{i-1} \geq E_{i,j} \ , \ pour \ tout \ 0 \leq j \leq q-1.\] 
