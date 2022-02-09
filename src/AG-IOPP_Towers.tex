@@ -2,6 +2,7 @@
 
 \input{header.tex}
 
+
 \title{Families of codes from tower of curves which are compatible with proximity testing}
 
 \author{Sarah Bordage, Mathieu Lhotel, Jade Nardi, Hugues Randriam}
@@ -96,7 +97,7 @@ Among the three requirements for a divisor to be compatible with one of the prev
 
 
 \begin{definition}\label{def-div_compatible}
-	Let $D_i \in \Div(\calC_i)$ and $\mu_i \in \F(\calC_i)$ such that 
+	Let $D_i \in \Div(\calX_i)$ and $\mu_i \in \F(\calX_i)$ such that 
 	\begin{equation}\label{eq:def-mu_i}
 		\gamma_i \cdot \mu_i = \zeta_i \mu_i.
 	\end{equation} For any $j \in \range{p_i}$, we define the divisor 
@@ -104,11 +105,11 @@ Among the three requirements for a divisor to be compatible with one of the prev
 		E_{i,j}\mydef \Floor{\frac{1}{p_i}{\pi_i}_*( D_i + j(\mu_i))} \in \Div(\mathcal{C}_{i+1}).
 	\end{equation}
 	
-	A divisor $D_{i+1} \in \Div(\calC_{i+1})$ is said to be \emph{compatible with $(D_i,\mu_i)$} if all the following assertions hold.
+	A divisor $D_{i+1} \in \Div(\calX_{i+1})$ is said to be \emph{compatible with $(D_i,\mu_i)$} if all the following assertions hold.
 	\begin{enumerate}
 		\item $D_{i+1}$ is supported by $\Gamma_{i+1}$-fixed points, 
 		\item for every $j \in \range{p_i}$, $E_{i,j} \leq D_{i+1}$,
-		\item  for every $j \in \range{p_i}$, there exists a function $\nu_{i+i,j}\in \F(\calC_{i+1})$ such that
+		\item  for every $j \in \range{p_i}$, there exists a function $\nu_{i+i,j}\in \F(\calX_{i+1})$ such that
 		\begin{equation}\label{eq:def-nu_i,j}
 			\poles{\nu_{i+i,j}}=D_{i+1} - E_{i,j}.	
 		\end{equation}
@@ -118,53 +119,53 @@ Among the three requirements for a divisor to be compatible with one of the prev
 
 The divisors $E_{i,j}$ in \eqref{eq:def-Eij} coincide with those in Theorem \ref{th:kani} and thus satisfy
 \begin{equation}\label{eq:decomposition}
-	L_{\calC_i}(D_i)= \bigoplus_{j=0}^{p_i-1} \mu_i^j \pi_i^* L_{\calC_{i+1}}(E_{i,j}).
+	L_{\calX_i}(D_i)= \bigoplus_{j=0}^{p_i-1} \mu_i^j \pi_i^* L_{\calX_{i+1}}(E_{i,j}).
 \end{equation}
 The first requirement ensures that the support of $D_{i+1}$ does not intersect with the set of evaluation points $\calP_{i+1}$. The second one implies that $L(E_{i,j}) \subseteq L(D_{i+1})$. The last condition means that for every $f_j \in L(E_{i,j})$, the function $\nu_{i+1, j}f_j$ lies in $L(D_{i+1})$.
 
 Among those three requirements, the third is definitely the most compelling and requires some geometric knowledge about the curves $C_i$. Indeed, on a general curve, not every effective divisor is the poles locus of a function and characterizing which effective divisors arise this way is at the heart of the Weierstrass gaps theory. Nonetheless, the existence of the balancing functions $\nu_{i+1,j}$ happens to be the main ingredient in Lemma \ref{lem:why_nuij}, which takes a prominent role in the construction of the folding operators.
 
 \begin{definition}[$(\mu_i)$-compatibility]\label{def-mu_i_compatible}
-	Let $(\calC_i)$ be a $(\calC,\calG)$-sequence. For every $i \in \range{r}$, take $\mu_i \in \F(\calC_i)$ satisfying \eqref{eq:def-mu_i}. A sequence of divisor $(D_i) \in \Div(\calC_i)$ is said to be \emph{$(\mu_i)$-compatible} if for every $i \in \range{r}$, the divisor $D_{i+1}$ is $(D_i,\mu_i)$-compatible.
+	Let $(\calX_i)$ be a $(\calX,\calG)$-sequence. For every $i \in \range{r}$, take $\mu_i \in \F(\calX_i)$ satisfying \eqref{eq:def-mu_i}. A sequence of divisor $(D_i) \in \Div(\calX_i)$ is said to be \emph{$(\mu_i)$-compatible} if for every $i \in \range{r}$, the divisor $D_{i+1}$ is $(D_i,\mu_i)$-compatible.
 \end{definition}
 
 \jade{Cette hypothèse a été relaxée :}
-We have now described all the key components to formally define the notion of foldable codes. However, to ensure a good soundness of the protocol, we add a constraint on each divisor $D_{i+1}$ regarding $D_i$. Indeed, as illustrated by Example \ref{ex:bad_kummer}, even though there exists a $(D_i,\mu_i)$-compatible divisor $D_{i+1}$, its degree may be unexpectedly substantial, which would likely deteriorate the relative minimum distance of $C_{i+1}$. We thus demand $D_{i+1}$ to be equal to one of the divisors $E_{i,j}$ \eqref{eq:def-Eij} that appear in the decomposition \eqref{eq:decomposition} of $L_{\calC_i}(D)$.
+We have now described all the key components to formally define the notion of foldable codes. However, to ensure a good soundness of the protocol, we add a constraint on each divisor $D_{i+1}$ regarding $D_i$. Indeed, as illustrated by Example \ref{ex:bad_kummer}, even though there exists a $(D_i,\mu_i)$-compatible divisor $D_{i+1}$, its degree may be unexpectedly substantial, which would likely deteriorate the relative minimum distance of $C_{i+1}$. We thus demand $D_{i+1}$ to be equal to one of the divisors $E_{i,j}$ \eqref{eq:def-Eij} that appear in the decomposition \eqref{eq:decomposition} of $L_{\calX_i}(D)$.
 
 \jade{Est-ce qu'on peut mettre les tours dans le cadre de cette définition?}
 
 \begin{definition}[Foldable AG codes]\label{def:good_properties}
-	Let $C =C(\calC,\calP,D)$ be an AG-code. This code is said to be \emph{foldable} if the following conditions are satisfied.
+	Let $C =C(\calX,\calP,D)$ be an AG-code. This code is said to be \emph{foldable} if the following conditions are satisfied.
 	\begin{itemize}
-		\item There exists a finite solvable group $\calG \in \Aut(\calC)$ that acts freely on $\calP$ : a composition series of $\calG$ $\eqref{diag:seq_groups}$ provides a $(\calC,\calG)$-sequence of curves $(\calC_i)$;
+		\item There exists a finite solvable group $\calG \in \Aut(\calX)$ that acts freely on $\calP$ : a composition series of $\calG$ $\eqref{diag:seq_groups}$ provides a $(\calX,\calG)$-sequence of curves $(\calX_i)$;
 		\item There exists $e \in (0,1)$ such that $\size{\calG} > \size{\calP}^e$;
-		\item There exist a sequence $(\mu_i) \in \F(\calC_i)$ satisfying \eqref{eq:def-mu_i} and a sequence $(D_i) \in \Div(\calC_i)$ that is $(\mu_i)$-compatible such that for every $i \in \range{r}$,
+		\item There exist a sequence $(\mu_i) \in \F(\calX_i)$ satisfying \eqref{eq:def-mu_i} and a sequence $(D_i) \in \Div(\calX_i)$ that is $(\mu_i)$-compatible such that for every $i \in \range{r}$,
 		\begin{equation}\label{eq:cdt_Di+1}
 			\exists \: j \in \range{p_i} \text{ such that } D_{i+1}=E_{i,j},
 		\end{equation}
 		where the divisors $E_{i, j}$ are defined as per Definition \ref{def-div_compatible}.
 		
 	\end{itemize}
-	%Moreover, we say that $C$ is \emph{efficiently foldable} if $\size{\calG}$ is a smooth integer and the functions $\nu_{i+1, j} \in \F(\calC_{i+1})$ can be evaluated at a point $P \in \calP_{i+1}$ using a number of arithmetic operations which is independent of $\size{\calP}$.
+	%Moreover, we say that $C$ is \emph{efficiently foldable} if $\size{\calG}$ is a smooth integer and the functions $\nu_{i+1, j} \in \F(\calX_{i+1})$ can be evaluated at a point $P \in \calP_{i+1}$ using a number of arithmetic operations which is independent of $\size{\calP}$.
 \end{definition}
 
 \subsection{Relaxing foldability conditions}
 
 
 
-\section{La tour Hermitienne}
+\section{Hermitian tower}
 
 \subsection{Preliminaries}
 
-\jade{J'ai appelé les corps $F_i$ pour qu'ils ne change pas de nom selon le type de tours. En plus, ça nous évite une confusion possible avec les semigroupes de Weierstrass.} \fr{$\leftarrow$ bonne idée}
-
 We consider the sequence of function fields $\calF=(F_i)_{i\geq 0}$ over $\F_{q^2}$ that is defined recursively by $F_0=\F_{q^2}(x_0)$ and $F_i = F_{i-1}(x_i)$ with equations
 \[x_i^q+x_{i} = x_{i-1}^{q+1} \text{ for } i\geq 1.\]
-For $i=1$, the field $F_1$ is the function field of the Hermitian curve over $\F_{q^2}$.
+Note that this tower of function field $\mathcal{F}$ corresponds to a tower of curve
+$(\calX_i)_{i\geq 0}$, where any $F_i$ is the function field of the curve $\calX_i$ over $\F_{q^2}$, that is with usual notations $F_i := \F_{q^2}(\calX_i)$. 
+For $i=1$, the field $F_1$ is nothing but the function field of the well-known Hermitian curve $\mathcal{H}:= \cal{X}_1$ over $\F_{q^2}$.
 
-The tower $(F_i)$ is a tower of Artin-Schreier extensions, which have been extensively studied \jade{REF} \fr{ $\leftarrow$ on a utilisé une ref particulière pour l'étude de la ramification ? Il me semblait qu'on avait juste repris la formule plus tard, là ou tu as déjà mis la ref.}
+The tower $\cal{F}$ is a tower of Artin-Schreier extensions, which have been extensively studied (see for example \cite{S08}). 
 
-Let us denote by $P_{\infty}^{(0)}$ the unique pole of the function $x_0$ in $F_0$.
+In what follows, let us denote by $P_{\infty}^{(0)}$ the unique pole of the function $x_0$ in $F_0$.
 
 \begin{lemma}\cite[Proposition 3.7.8]{S08}
 	Let $i \geq 1$. The place $P_{\infty}^{(0)}$ est totally ramified in $F_i$, and its unique extension, denoted by $P_{\infty}^{(i)}$, satisfies
@@ -210,7 +211,7 @@ For every $i \geq 0$, the number of $\F_{q^2}$--rational places in $F_i$ is give
 
 In order to obtain a sequence of foldable codes, we need to describe the Riemann-Roch spaces on a certain step from Riemann-Roch spaces on lower curves. A priori that Kani's theorem does not apply, so we will have to find a decomposition by hand. In particular, it is reasonable to assume that the divisors associated with our codes are only supported by the single branched point, i.e. $P^{(i)}_{\infty}$. We therefore find ourselves having to study the behaviour of Riemann-Roch spaces of the form 
 \[L_{F_i}\left(mP^{(i)}_{\infty}\right), \ pour \ i \geq 1.\] 
-\jade{On va appeler les degrés $m$ pour garder $r$ pour le nombre de rounds.}
+
 
 For a given $i \geq 0$, $P^{(i)}_{\infty}$ is the unique pole of the functions $x_0,...,x_i$, which gives an explicit basis of the Riemman-Roch space associated to a multiple of $P^{(i)}_{\infty}$.
 
@@ -219,33 +220,33 @@ For all $i \leq 1$ and $m \leq 1$, we have
 \[L_{F_i}(mP^{(i)}_{\infty}) = \Span\left\{x_0^{a_0} \cdots x_i^{a_i} \ | \ 0 \leq a_0 \ , \ 0 \leq a_j \leq q-1 \text{ and } \sum\limits_{j=0}^i a_jq^{i-j}(q+1)^j \leq m \right\}.\]
 \end{lemma}
 
-\subsection{\fr{Construction de codes repliables}}
+\subsection{Construction of foldables AG-codes}
 
-Let us fix $i \geq 0$. We aim to define a sequence of AG codes $C_i$ defined by 
-\[C_i \mydef C_L(F_i,\calP_{i},G_i) \text{ where } \calP_{i} \subseteq F_i(\F_{q^2}) \setminus \{P_\infty^{(i)}\} \text{ and } G_i = d_iP^{(i)}_{\infty}.\]
+Let us fix $i \geq 0$. We aim to define a sequence of AG codes $C_i$ on the tower of curves $(\calX_i)_{i\geq 0}$ defined by 
+\[C_i \mydef C_L(\calX_i,\calP_{i},G_i) \text{ where } \calP_{i} \subseteq \calX_i(\F_{q^2}) \setminus \{P_\infty^{(i)}\} \text{ and } D_i = d_iP^{(i)}_{\infty}.\]
 
 Even though Kani's theorem does not hold, the basis of the Riemman-Roch space (Lemma \ref{lem:basis_herm}) enables us to get a similar decomposition, given in the following proposition.
 
 \begin{proposition} 
 	For $0 \leq j \leq q-1$, we set
 	\[E_{i,j} \mydef \left\lfloor \frac{1}{q} \pi_{i*}\left(G_i-j(x_i)^{F_i}_{\infty}\right)\right\rfloor,\]
-	où $\pi_i : F_i \rightarrow F_{i-1}$. Then 
-\[L_{F_i}(G_i) = \bigoplus\limits_{j=0}^{q-1} x_i^j \pi_i^*\left(L_{F_{i-1}}(E_{i,j})\right).\]
+	where $\pi_i : F_i \rightarrow F_{i-1}$. Then 
+\[L_{F_i}(D_i) = \bigoplus\limits_{j=0}^{q-1} x_i^j \pi_i^*\left(L_{F_{i-1}}(E_{i,j})\right).\]
 \end{proposition}
 
-Following the original definition of \cite{BN20}, we may define $G_{i-1}$ as $E_{i,0} = \left\lfloor \dfrac{d_i}{q} \right\rfloor \cd P^{(i-1)}_{\infty}$. This way, we get \todo{Donner un numéro/nom à cette cdt.}
-\[G_{i-1} \geq E_{i,j} \ , \ pour \ tout \ 0 \leq j \leq q-1.\] 
-However, to get foldable codes, we need the existence of balancing functions  $\nu_{i-1,j} \in F_{i-1}$ (pour tout $j$) such that 
+Following the original definition of \cite{BN20}, we may define $D_{i-1}$ as $E_{i,0} = \left\lfloor \dfrac{d_i}{q} \right\rfloor \cd P^{(i-1)}_{\infty}$. This way, we get \todo{Donner un numéro/nom à cette cdt.}
+\[D_{i-1} \geq E_{i,j} \ , \ pour \ tout \ 0 \leq j \leq q-1.\] 
+However, to get foldable codes, we need the existence of balancing functions  $\nu_{i-1,j} \in F_{i-1}$ (for every  $0 \leq j \leq q-1$) such that 
 \begin{equation}\label{eq:balancing_fct_herm}
-	G_{i-1}-E_{i,j} = (\nu_{i-1,j})^{F_{i-1}}_{\infty}.
+	D_{i-1}-E_{i,j} = (\nu_{i-1,j})^{F_{i-1}}_{\infty}.
 \end{equation}
-In order to verify this conditions, on need to explicit the divisors $G_{i-1}-E_{i,j}$, that can easyly 
+In order to verify this conditions, on need to explicit the divisors $D_{i-1}-E_{i,j}$, that can easyly be done in our setup.
 
 \begin{lemma} \label{divisor à équi}
-In our case, for every $0 \leq j \leq q-1$, we have
+For every $0 \leq j \leq q-1$, we have
 \[E_{i,j} = \left\lfloor \dfrac{d_i-j(q+1)^i}{q}\right\rfloor \cd P^{(i-1)}_{\infty}.\]
 Thus, we need to balance the divisors
-\[G_{i-1}-E_{i,j} = \left(\left\lfloor \dfrac{d_i}{q} \right\rfloor - \left\lfloor \dfrac{d_i-j(q+1)^i}{q}\right\rfloor\right) \cd P^{(i-1)}_{\infty}.\]
+\[D_{i-1}-E_{i,j} = \left(\left\lfloor \dfrac{d_i}{q} \right\rfloor - \left\lfloor \dfrac{d_i-j(q+1)^i}{q}\right\rfloor\right) \cd P^{(i-1)}_{\infty}.\]
 
 \end{lemma}
 
@@ -254,12 +255,13 @@ F_{i-1}$ and we know their exact valuation. Thus we have
 
 \[\calH\left(P^{(i-1)}_{\infty}\right) = \left \langle q^{i-1-k}(q+1)^k \ , \ 0\leq k \leq i-1 \right\rangle_{\N}.\]
 
-Therefore, choosing $G_{i-1}$ as $E_{i,0}$ would work if and only for every $0 \leq j \leq q-1$
+Therefore, choosing $D_{i-1}$ as $E_{i,0}$ would work if and only for every $0 \leq j \leq q-1$
 \[ \left\lfloor \dfrac{d_i}{q} \right\rfloor - \left\lfloor \dfrac{d_i-j(q+1)^i}{q}\right\rfloor \in \calH\left(P^{(i-1)}_{\infty}\right).\]
-However, when $i$ increases, this condition is never satisfied. We have to choose $G_{i-1}$ differently.  To ensure that 
-$\deg(G_{i-1}-E_{i,j})$ is never a Weierstrass gap for $P_{\infty}^{(i-1)}$, we increase the degree $d_{i-1}$ of $G_{i-1}$. As we know that
+However, when $i$ increases, this condition is never satisfied. We have to choose $D_{i-1}$ differently.  To ensure that 
+$\deg(D_{i-1}-E_{i,j})$ is never a Weierstrass gap for $P_{\infty}^{(i-1)}$, we increase the degree $d_{i-1}$ of $D_{i-1}$. As we know that
 \[\rm{max}\left(\N \backslash \calH\left(P^{(i-1)}_{\infty}\right)\right) \leq 2g_{i-1} -1,\]
-see for example \cite{S08}, Theorem 1.6.8, we define $G_{i-1}\mydef d_{i-1} P^{(i-1)}_{\infty}$ where
+see for example \cite{S08}, Theorem 1.6.8.
+Thus, we define $D_{i-1}\mydef d_{i-1} P^{(i-1)}_{\infty}$ where
 \begin{equation}\label{eq:deg_herm}
 d_{i-1} \mydef \Floor{ \dfrac{d_i}{q}} + 2g_{i-1}.
 \end{equation}
@@ -268,7 +270,7 @@ d_{i-1} \mydef \Floor{ \dfrac{d_i}{q}} + 2g_{i-1}.
 In this manner, we are sure to find balancing functions. In fact, the choice of degree in $(8)$ ensure that for every $0 \leq j \leq q-1$ 
 
 \begin{equation}
-m_{i,j}:=deg(G_{i-1}-E_{i,j}) =  \left(\left\lfloor \dfrac{d_i}{q} \right\rfloor - \left\lfloor \dfrac{d_i-j(q+1)^i}{q}\right\rfloor + 2g_{i-1} \right) \in \mathcal{H}\left(P_{\infty}^{(i-1)}\right).
+m_{i,j}:=deg(D_{i-1}-E_{i,j}) =  \left(\left\lfloor \dfrac{d_i}{q} \right\rfloor - \left\lfloor \dfrac{d_i-j(q+1)^i}{q}\right\rfloor + 2g_{i-1} \right) \in \mathcal{H}\left(P_{\infty}^{(i-1)}\right).
 \end{equation}
 
 Since we know a $\mathbb{N}$-basis of the Weierstrass semigroup at $P_{\infty}^{(i-1)}$, we are able to explicit the form of the functions $\nu_{i-1,j}$. In particular, they can be chosen as product of monomials in the functions $x_0,...,x_{i-1}$. More precisly, if $a_{i,j} := (a_{i,j}(0),...,a_{i,j}(i-1)) \in \mathbb{N}^i$ are integers such that
@@ -286,13 +288,11 @@ Nevertheless, rising the degree of the divisor at each step has a counterpart. I
 
 
 
-\subsection{\fr{Majoration du rendement sur $\mathbb{P}^1$ et recherche de $\ii$}}
+\subsection{Majoration of the rate on $\mathbb{P}^1$ et searching for $\ii$}
 
-Let us denote by $\ii$ the level in the tower of curves on which the code to which we want test proxmity is defined.
-\jade{Phrase caca.}
+Let us denote by $\ii$ the level in the tower $(\calX_i)_{i\geq 0}$, such that $\calX_{\ii}$ is the curve on which the code we want to test proximity is defined.
 
-
-In order to control the rates of the different codes along the tower, let us first notice that they form an increasing sequence, and that the largest rate is that of the code Reed-Solomon code $\mathcal{C}_0$. In order to bound this rate from above, we shall compute the degree $d_0$ of the divisor $G_0$ on $\mathbb{P}^1$. \\
+In order to control the rates of the different codes along the tower, let us first notice that they form an increasing sequence, and that the largest rate is that of the code Reed-Solomon code $\mathcal{C}_0$. In order to bound this rate from above, we shall compute the degree $d_0$ of the divisor $D_0$ on $\mathbb{P}^1$. \\
 
 \begin{lemma}\label{lem:deg_herm}
 for $1 \leq j \leq \ii$, we have 
@@ -312,7 +312,6 @@ We are led to bound the genera $g_i$ for $i \leq \ii$.
 For $i \geq 1$, we have
 \[g_i \leq \dfrac{q^{i+1}}{2} \sum\limits_{k=1}^i \binom{i}{k} \dfrac{1}{q^{k-1}} \leq \dfrac{iq^{i+1}}{2} \sum\limits_{k=1}^i \left(\dfrac{i}{q}\right)^{k-1} \leq \dfrac{i}{2}q^{i+1} + \dfrac{i(i-1)}{4}q^i,\]
 the last inequality holding only if $i-1 < q$.
-\jade{Il faut un strict sinon ça ne fonctionne pas.}
 \end{proposition}
 
 \begin{proof}
@@ -335,7 +334,7 @@ Assuming that $i-1 < q$, we have $1- \left(\dfrac{i-1}{q}\right)^{i-1} \leq 1$ a
 We have now gathered all the ingredients to get an upperbound on $d_0$.
 
 \begin{corollary}
-The degree $d_0$ of the divisor $G_0$ on $\mathbb{P}^1$ is bounded from above by 
+The degree $d_0$ of the divisor $D_0$ on $\mathbb{P}^1$ is bounded from above by 
 \[d_0 \leq \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + (\ii-1)\left( 1+\dfrac{(\ii-1)}{2} \left(q-\frac{2}{3} + \frac{\ii}{3}\right) \right) \]
 \end{corollary}
 
@@ -361,7 +360,7 @@ Let us fix $\rho \in (0,1)$. If
 then the rate of the code $C_0$ is less than $\rho$.
 \end{corollary}
 
-\subsubsection{Families of foldable codes with constant rate}
+\subsection{Families of foldable codes with constant rate}
 
 \jade{Pour espérer avoir une famille de 'gros' codes à rendement constant, on va prendre un diviseur du haut avec un degré plus gros. la dépendance en le degré étant linéaire, ça devrait passer !}
 
@@ -386,8 +385,9 @@ then the rate of the code $C_0$ is less than $\rho$.
 	To prove that the above inequality is true for $\kappa=1$, it enough to note that the 3-degree polynomial function $-x^3-6x^2+16x-12$ takes negative value for any positive $x$.
 \end{proof}
 
+
 Take an integer $r$. Let us assume that $q=p^{2r}$ and take $\kappa=p^{-\ell}$ for an $0<\l<2r$. Then the code $C_L\left(F_{p^r},F_{p^r}( \F_{p^{4r}} )\setminus\{ {P_\infty}^{(p^r)} \}, \kappa p^3rP_\infty^{(p^r)}\right)$ is foldable. When $r \rightarrow \infty$, the rate of $\calC$ tends to $\dfrac{\kappa}{2}$ and its relative minimum distance is bounded from below by $1-\dfrac{\kappa}{2}-\dfrac{\kappa}{4p^r}$.
-\jade{J'admets que c'est dégueulasse écrit comme ça mais on se comprend !}
+
 
 
 \begin{proposition}
@@ -421,20 +421,7 @@ $q$ & $\ii$ & $n_{\ii}$ & $k_{\ii}$ & $n_0$ & $k_0$ & $\rho_0$ & majorant sur $\
 \end{tabular}
 \end{center}
 
-
-
-\section{Une tour récursive optimale}
-
-
-
-\subsection{Définitions et propriétés}
-
-
-
-Dans cette section, on s’intéressera à une tour récursive, introduite et prouvée optimale par Garcia et Stichtenoch. Cette section s'appuie sur l'article de G. Oliveira et L. Quoos, \it{Bases for Riemann-Roc Spaces of One-Point Divisors on an Optimal Tower of Function Fields} \rm.
-
-
-
+\newpage
 
 \bibliographystyle{alpha}
 \bibliography{biblio_ag_ioppp_towers}
