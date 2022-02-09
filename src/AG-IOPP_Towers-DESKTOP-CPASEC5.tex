@@ -27,74 +27,6 @@ Pour cela, on considérera différentes tours de corps de fonctions, qui vérifi
 
 
 
-\subsubsection{Sequence of curves}
-Fix a curve $\mathcal{C}$ defined over $\F$ and a finite solvable group $\calG \subseteq \Aut(\mathcal{C})$ whose order is coprime with the characteristic of $\F$. The hypothesis of solvability yields a sequence of subgroups of $\calG$
-\begin{equation}\label{diag:seq_groups}
-	\calG=\calG_0 \vartriangleright \calG_1 \vartriangleright \dots \vartriangleright \calG_r = 1,  
-\end{equation}
-such that $\calG_{i+1}$ is a normal subgroup of $\calG_i$ and the factor group $\Gamma_i := \calG_i /\calG_{i+1} \simeq \Z/p_i \Z$ is a cyclic group of prime order $p_i$. A sequence like \eqref{diag:seq_groups} is not unique but another sequence of this type would have the same length and the same set of factor groups, up to permutation, by Jordan–Hölder theorem.
-
-The group $\Gamma_0$ acts on $\calC_0\mydef \calC$, as a quotient of $\calG$. We thus define the quotient curve $\calC_1 \mydef \calC_0 / \Gamma_0$. The group $\Gamma_1$ is constant on the orbits under $\Gamma_0$. Repeating the process for every $i \in \range{r}$ defines a sequence of curves recursively  as follows:
-\[\mathcal{C}_0:=\mathcal{C} \text{ and } \mathcal{C}_{i+1}=\mathcal{C}_i/\Gamma_i.\]
-We denote by $\pi_i: \mathcal{C}_i \rightarrow \mathcal{C}_{i+1}$ the canonical projection modulo the action of $\Gamma_i$.
-\begin{equation}\label{diag:seq_curves}
-	\begin{tikzcd}
-		\mathcal{C}_0\arrow[loop, distance=14, out=130, in=100,"\Gamma_0"] \arrow[r, two heads, "\pi_0"] & \mathcal{C}_1\arrow[loop, distance=14, out=130, in=100,"\Gamma_1"] \arrow[r, two heads, "\pi_1"] & \dots  \arrow[r, two heads, "\pi_i"] & \mathcal{C}_i\arrow[loop, distance=14, out=130, in=100,"\Gamma_i"] \arrow[r, two heads, "\pi_{i+1}"]& \mathcal{C}_{i+1}\arrow[loop, distance=14, out=130, in=100,"\Gamma_{i+1}"] \arrow[r, two heads] & \dots \arrow[r, two heads,"\pi_{r-1}"] & \mathcal{C}_{r}
-	\end{tikzcd}
-\end{equation}
-
-\jade{On pourrait peut-être en choisir une unique en faisant croître ou décroître les $p_i$.}
-\begin{definition}
-	A sequence of curve constructed as above will be called a \emph{$(\calC,\calG)$-sequence}.
-\end{definition}
-
-\subsubsection{Sequence of codes}\label{subsubsec:def-codes}
-
-We aim to construct a sequence of codes from a $(\calC,\calG)$-sequence of curves, which is compatible with the action at each step.
-
-First, fix an effective divisor $D_0 \in \Div(\mathcal{C}_0)$ supported by $\Gamma_0$-invariant points.
-
-For any $i \in \range{r}$, the factor group $\Gamma_i$ is cyclic of order $p_i$. Write $\zeta_i$ for a primitive $p_i^{th}$ root and $\Gamma_i=\gen{\gamma_i}$.
-
-\paragraph{Divisors.}
-To make our protocol complete and sound, we need to choose at each step a divisor which is compatible with the previous one in the sense of the following definition.
-
-\begin{definition}\label{def-div_compatible}
-	Let $D_i \in \Div(\calC_i)$ and $\mu_i \in \F(\calC_i)$ such that 
-	\begin{equation}\label{eq:def-mu_i}
-		\gamma_i \cdot \mu_i = \zeta_i \mu_i.
-	\end{equation} For any $j \in \range{p_i}$, we define the divisor 
-	\[	E_{i,j}\mydef \Floor{\frac{1}{p_i}{\pi_i}_*( D_i + j(\mu_i))} \in \Div(\mathcal{C}_{i+1}).\]
-	
-	A divisor $D_{i+1} \in \Div(\calC_{i+1})$ is said to be \emph{compatible with $(D_i,\mu_i)$} if all the following assertions hold.
-	\begin{enumerate}
-		\item $D_{i+1}$ is supported by $\Gamma_{i+1}$-invariant points, 
-		\item for every $j \in \range{p_i}$, $E_{i,j} \leq D_{i+1}$,
-		\item  for every $j \in \range{p_i}$, there exists a function $\nu_{i+i,j}\in \F(\calC_{i+1})$ such that $\poles{\nu_{i+i,j}}=D_{i+1} - E_{i,j}$.	
-	\end{enumerate}
-\end{definition}
-
-Among the three requirements for a divisor to be compatible with one of the previous curve, the third is definitely the most compelling. \jade{A détailler.} However, this item happens to be the main ingredient in Lemma \ref{lem:why_nuij}, which takes a prominent role in the choice of the folding operators.
-
-
-\begin{lemma}\label{lem:why_nuij}
-	Let $i \in \range{r}$, $D_i \in \Div(\calC_i)$ and $\mu_i \in \F(\calC_i)$ satisfying Eq. \eqref{eq:def-mu_i}. Consider a divisor $D_{i+1}\in\Div(\calC_{i+1})$ that is compatible with $(D_i,\mu_i)$.
-	
-	Fix $j \in \range{p_i}$. Then a function $g\in \F(\calC_{i+1})$ belongs to $L(E_{i,j})$ if and only if both functions $g$ and $g \nu_{i+1,j}$ belong to $L(D_{i+1})$.
-\end{lemma}
-
-\begin{proof} Assume that $g \in L(E_{i,j})$. Then the second and third items of Def. \ref{def-div_compatible} ensures that $g$ and $g\nu_{i+1,j}$ lie in $L(D_{i+1})$.
-	
-	Conversely, assume that $g$ and $g\nu_{i+1,j}$ belong to  $L(D_{i+1})$ and write $D_{i+1} = \sum n_P P$. The hypotheses on $g$ imply that {$g \in L(D_{i+1}) \cap L(D_{i+1} - (\nu_{i+1,j}))$}. By Lemma 2.6 \cite{MP93}, the function $g$ belongs to $L(D'_{i+1})$, where to divisor $D'_i$ is defined by
-	\[D'_{i+1} \mydef \sum_P n'_P P \text{ where } n'_P \mydef \min(n_P,n_P+v_P(\nu_{i+1,j})).\]
-	Then $D'_{i+1} = D_{i+1} - \poles{\nu_{i+1,j}} = E_{i,j}$ by the third item of Def. \ref{def-div_compatible}.
-\end{proof}
-
-\begin{definition}\label{def-mu_i_compatible}
-	Let $(\calC_i)$ be a $(\calC,\calG)$-sequence. For every $i \in \range{r}$, take $\mu_i$ satisfying Eq. \eqref{eq:def-mu_i}. A sequence of divisor $(D_i) \in \Div(\calC_i)$ is said to be \emph{$(\mu_i)$-compatible} if for every $i \in \range{r}$, the divisor $D_{i+1}$ is $(D_i,\mu_i)$-compatible.
-\end{definition}
-
-
 \begin{definition}\label{def-div_compatible}
 	Let $D_i \in \Div(\calC_i)$ and $\mu_i \in \F(\calC_i)$ such that 
 	\begin{equation}\label{eq:def-mu_i}
@@ -327,9 +259,9 @@ Let us assume that the code $C_{\ii}$ is obtained by evaluating on the whole set
 Then $n_0=q^2$. 
 
 \begin{corollary}\label{cor:cdt_deg_herm}
-Let us fix $\rho \in (0,1)$. If
-\[ \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\ii}{3}\right) + (\ii-1) < \rho q^2,\]
-then the rate of the code $C_0$ is less than $\rho$.
+If 
+\[ \left\lfloor \dfrac{d_{\ii}}{q^{\ii}}\right\rfloor + \dfrac{\ii(\ii-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\ii}{3}\right) + (\ii-1) < q^2,\]
+then the code $C_0$ is non trivial.
 \end{corollary}
 
 \subsubsection{Families of foldable codes with constant rate}
@@ -337,35 +269,22 @@ then the rate of the code $C_0$ is less than $\rho$.
 \jade{Pour espérer avoir une famille de 'gros' codes à rendement constant, on va prendre un diviseur du haut avec un degré plus gros. la dépendance en le degré étant linéaire, ça devrait passer !}
 
 \begin{proposition}
-	Let us fix $\rho \in (0,1)$. Let us assume that $\ii =\sqrt{q}$ and that the divisor $G_{\ii}$ has degre $d_{\ii} = 2\kappa \sqrt{q}g_{\ii}$ for some $\kappa \in (0,1)$.
-	Then the rate of \jade{the last RS code} is less than $\rho$.
+	Let us assume that $\ii=\sqrt{q}$ and that the divisor $G_{\ii}$ has degre $d_{\ii} = \kappa \sqrt{q}g_{\ii}$ for some $\kappa \in (0,1)$.
+	Then \jade{the last RS code} is non trivial. \jade{has rate = $\rho$.}
 \end{proposition}
-\jade{J'ai mis un 2 dans le degré pour avoir un résultat plus joli...}
 \begin{proof}
 	Using Proposition \ref{prop:maj_genus_herm} to bound the genus from above, we have
 	
-	\[ \Floor{\dfrac{d_{\ii}}{q^{\ii}}} \leq  \kappa q \cd \left( q + \dfrac{\sqrt{q}-1}{2} \right)\]
-	By Corollary \ref{cor:cdt_deg_herm}, a sufficient condition to have the designated rate is 
-	\[\kappa q\cd \left( q + \dfrac{\sqrt{q}-1}{2} \right)+\dfrac{\sqrt{q}(\sqrt{q}-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\sqrt{q}}{3}\right) + \sqrt{q}-1 < \rho q^2.\]
-	The right hand--side term is an increasing function of $\kappa$. Therefore, if this inequality is satisfied for $\kappa=1$, it holds for every $\kappa \in (0,1)$. Simplifying this inequation, we get
-		 
-	%\[6(1+\kappa - 2) q^2 + (3\kappa-4)q\sqrt{q}-3(\kappa+2)q+16\sqrt{q}-12 <0.\]
-	
-	\[3(1+2\kappa - 2\rho) q^2 + (3\kappa-1)q\sqrt{q}-3(\kappa+1)q+8\sqrt{q}-6 <0.\]
-	
-	
+	\[ \Floor{\dfrac{d_{\ii}}{q^{\ii}}} \leq  \dfrac{\kappa q}{2} \cd \left( q + \dfrac{\sqrt{q}-1}{2} \right)\]
+	By Corollary \ref{cor:cdt_deg_herm}, a sufficient condition to have $\rho_0 < 1$ is
+	\[\dfrac{\kappa q}{2} \cd \left( q + \dfrac{\sqrt{q}-1}{2} \right)+\dfrac{\sqrt{q}(\sqrt{q}-1)}{2}\cd \left(q-\frac{2}{3} + \frac{\sqrt{q}}{3}\right) + \sqrt{q}-1 < q^2.\]
+	The right hand--side term is an increasing function of $\kappa$. Hence, if it is satisfied for $\kappa=1$, it holds for every $\kappa \in (0,1)$. Simplifying this inequation, we get 
+	\[6(1+\kappa - 2) q^2 + (3\kappa-4)q\sqrt{q}-3(\kappa+2)q+16\sqrt{q}-12 <0.\]
 	To prove that the above inequality is true for $\kappa=1$, it enough to note that the 3-degree polynomial function $-x^3-6x^2+16x-12$ takes negative value for any positive $x$.
 \end{proof}
 
 Take an integer $r$. Let us assume that $q=p^{2r}$ and take $\kappa=p^{-\ell}$ for an $0<\l<2r$. Then the code $C_L\left(F_{p^r},F_{p^r}( \F_{p^{4r}} )\setminus\{ {P_\infty}^{(p^r)} \}, \kappa p^3rP_\infty^{(p^r)}\right)$ is foldable. When $r \rightarrow \infty$, the rate of $\calC$ tends to $\dfrac{\kappa}{2}$ and its relative minimum distance is bounded from below by $1-\dfrac{\kappa}{2}-\dfrac{\kappa}{4p^r}$.
 \jade{J'admets que c'est dégueulasse écrit comme ça mais on se comprend !}
-
-\begin{proposition}
-	Let us fix $R, \rho \in (0,1)$. Let us assume that $\ii =\sqrt{q}$ and that the divisor $G_{\ii}$ has degre $d_{\ii} = 2\kappa \sqrt{q}g_{\ii}$ for some $\kappa \in (0,1)$.
-	Then the rate of \jade{the last RS code} is less than $\rho$.
-\end{proposition}
-
-
 
 
 \newpage
