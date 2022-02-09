@@ -4,7 +4,7 @@
 
 \title{Families of codes from tower of curves which are compatible with proximity testing}
 
-\author{Sarah Bordage, Matthieu Lhotel, Jade Nardi, Hugues Randriam}
+\author{Sarah Bordage, Mathieu Lhotel, Jade Nardi, Hugues Randriam}
 
 \begin{document}
 
@@ -156,21 +156,19 @@ We have now described all the key components to formally define the notion of fo
 
 \subsection{Preliminaries}
 
-\jade{J'ai appelé les corps $F_i$ pour qu'ils ne change pas de nom selon le type de tours. En plus, ça nous évite une confusion possible avec les semigroupes de Weierstrass.}
+\jade{J'ai appelé les corps $F_i$ pour qu'ils ne change pas de nom selon le type de tours. En plus, ça nous évite une confusion possible avec les semigroupes de Weierstrass.} \fr{$\leftarrow$ bonne idée}
 
 We consider the sequence of function fields $\calF=(F_i)_{i\geq 0}$ over $\F_{q^2}$ that is defined recursively by $F_0=\F_{q^2}(x_0)$ and $F_i = F_{i-1}(x_i)$ with equations
 \[x_i^q+x_{i} = x_{i-1}^{q+1} \text{ for } i\geq 1.\]
 For $i=1$, the field $F_1$ is the function field of the Hermitian curve over $\F_{q^2}$.
 
-The tower $(H_i)$ is a tower of Artin-Schreier extensions, which have been extensively studied \jade{REF}.
-
-\fr{Commençons par étudier la ramification dans la tour :}
+The tower $(F_i)$ is a tower of Artin-Schreier extensions, which have been extensively studied \jade{REF} \fr{ $\leftarrow$ on a utilisé une ref particulière pour l'étude de la ramification ? Il me semblait qu'on avait juste repris la formule plus tard, là ou tu as déjà mis la ref.}
 
 Let us denote by $P_{\infty}^{(0)}$ the unique pole of the function $x_0$ in $F_0$.
 
 \begin{lemma}\cite[Proposition 3.7.8]{S08}
-	Let $j \geq 1$. The place $P_{\infty}^{(0)}$ est totally ramified in $F_j$, and its unique extension, denoted by $P_{\infty}^{(j)}$, satisfies
-\[e\left(P_{\infty}^{(j)}|P_{\infty}^{(0)}\right) = [F_j:F_0]=q^j.\]
+	Let $i \geq 1$. The place $P_{\infty}^{(0)}$ est totally ramified in $F_i$, and its unique extension, denoted by $P_{\infty}^{(i)}$, satisfies
+\[e\left(P_{\infty}^{(i)}|P_{\infty}^{(0)}\right) = [F_i:F_0]=q^i.\]
 \end{lemma}
 
 
@@ -181,7 +179,7 @@ Then
 where $P^{(1)}$ is the unique extension of $P^{(0)}$. Moreover, $P^{(1)}$ is the unique common zero of $x$ and $y$ in $F$.
 
 By iteratively using these divisor decompositions, we get formula for the principal divisors $(x_i)^{F_i}$ at each step.
-\begin{lemma}
+\begin{lemma} \label{div princ}
 \begin{enumerate}
 \item $P_{\infty}^{(0)}$ is the unique place that is ramified in the tower $\calF$;
 \item For $i \geq 1$, we have 
@@ -194,7 +192,14 @@ where $ S^{(i)} = \sum_{Q\mid P^{(i-1)}} Q$ is the sum of the $q$ places lying o
 \end{enumerate}
 \end{lemma}
 
-Let $g_i$ be the genus of $F_i$. \jade{$\leftarrow$ on peut dire ça comme ça ?} An explicit formula was given by Pellikaan, Shen and Wee \cite[Proposition 4]{PSW91}. We have $g_0=0$ and for $i\geq 1$, 
+Using this lemma, we are able to get the valuation at $P_{\infty}^{(i-1)}$ of every function $x_j$, for $0 \leq j \leq i-1$.
+
+\begin{corollary} \label{val pinf}
+Let $i \geq 1$. Then for $0 \leq j \leq i-1$, one have
+\[\nu_{P_{\infty}^{(i-1)}}(x_j) = - q^{i-1-j}(q+1)^j.\]
+\end{corollary}
+
+Let $g_i:=g(F_i)$ denote the genus of $F_i$. An explicit formula was given by Pellikaan, Shen and Wee \cite[Proposition 4]{PSW91}. We have $g_0=0$ and for $i\geq 1$, 
 
 \begin{equation}\label{eq:genus_herm}
 	g_i =\dfrac{1}{2} \cd \left(\sum\limits_{k=1}^i q^{i+1} \cd \left(1+\frac{1}{q}\right)^{k-1} +1 -(1+q)^i\right).
@@ -218,42 +223,66 @@ For all $i \leq 1$ and $m \leq 1$, we have
 
 Let us fix $i \geq 0$. We aim to define a sequence of AG codes $C_i$ defined by 
 \[C_i \mydef C_L(F_i,\calP_{i},G_i) \text{ where } \calP_{i} \subseteq F_i(\F_{q^2}) \setminus \{P_\infty^{(i)}\} \text{ and } G_i = d_iP^{(i)}_{\infty}.\]
+
 Even though Kani's theorem does not hold, the basis of the Riemman-Roch space (Lemma \ref{lem:basis_herm}) enables us to get a similar decomposition, given in the following proposition.
 
 \begin{proposition} 
 	For $0 \leq j \leq q-1$, we set
-	\[E_{i,j} \mydef \left\lfloor \frac{1}{q} \pi_*\left(G_i-j(x_i)^{F_i}_{\infty}\right)\right\rfloor,\]
-	\fr{où $\pi : F_i \rightarrow F_{i-1}$ est indépendant de $i$.} \jade{Vraiment ??} Then 
-\[L_{F_i}(G_i) = \bigoplus\limits_{j=0}^{q-1} x_i^j \pi^*\left(L_{F_{i-1}}(E_{i,j})\right).\]
+	\[E_{i,j} \mydef \left\lfloor \frac{1}{q} \pi_{i*}\left(G_i-j(x_i)^{F_i}_{\infty}\right)\right\rfloor,\]
+	où $\pi_i : F_i \rightarrow F_{i-1}$. Then 
+\[L_{F_i}(G_i) = \bigoplus\limits_{j=0}^{q-1} x_i^j \pi_i^*\left(L_{F_{i-1}}(E_{i,j})\right).\]
 \end{proposition}
 
 Following the original definition of \cite{BN20}, we may define $G_{i-1}$ as $E_{i,0} = \left\lfloor \dfrac{d_i}{q} \right\rfloor \cd P^{(i-1)}_{\infty}$. This way, we get \todo{Donner un numéro/nom à cette cdt.}
 \[G_{i-1} \geq E_{i,j} \ , \ pour \ tout \ 0 \leq j \leq q-1.\] 
-Howver, to get foldable codes, we need the existence of balancing functions  $\nu_{i-1,j} \in F_{i-1}$ (pour tout $j$) such that 
+However, to get foldable codes, we need the existence of balancing functions  $\nu_{i-1,j} \in F_{i-1}$ (pour tout $j$) such that 
 \begin{equation}\label{eq:balancing_fct_herm}
-	G_{i-1}-E_{i,j} = (\nu_{i-1,j})^{F_i}_{\infty}.
+	G_{i-1}-E_{i,j} = (\nu_{i-1,j})^{F_{i-1}}_{\infty}.
 \end{equation}
+In order to verify this conditions, on need to explicit the divisors $G_{i-1}-E_{i,j}$, that can easyly 
 
-\todo{num/nom cdt}
-
+\begin{lemma} \label{divisor à équi}
 In our case, for every $0 \leq j \leq q-1$, we have
-\[G_{i-1}-E_{i,j} = \left\lfloor \dfrac{r_i-j(q+1)^i}{q}\right\rfloor \cd P^{(i-1)}_{\infty}.\]
-To find balancing functions we are led to study the Weierstrass semigroup of $P^{(i-1)}_{\infty}$, denoted by $\calH\left(P^{(i-1)}_{\infty}\right)$. The generators of this semigroup are well-known \todo{REF}:
+\[E_{i,j} = \left\lfloor \dfrac{d_i-j(q+1)^i}{q}\right\rfloor \cd P^{(i-1)}_{\infty}.\]
+Thus, we need to balance the divisors
+\[G_{i-1}-E_{i,j} = \left(\left\lfloor \dfrac{d_i}{q} \right\rfloor - \left\lfloor \dfrac{d_i-j(q+1)^i}{q}\right\rfloor\right) \cd P^{(i-1)}_{\infty}.\]
 
-\[\calH\left(P^{(i-1)}_{\infty}\right) = \left \langle q^{i-k}(q+1)^k \ , \ 0\leq k \leq i-1 \right\rangle_{\N}.\]
+\end{lemma}
 
-Therefore, choosing $G_{i-1}$ as $E_{i,0}$ \jade{would work} if and only for every $1 \leq j \leq q-1$
-\[ \left\lfloor \dfrac{r_i-j(q+1)^i}{q}\right\rfloor \in \calH\left(P^{(i-1)}_{\infty}\right).\]
+From the previous lemma, it is clear that to find balancing functions, we are led to study the Weierstrass semigroup of $P^{(i-1)}_{\infty}$, denoted by $\calH\left(P^{(i-1)}_{\infty}\right)$. The generators of this semigroup can be found using Corollary \ref{val pinf}. In fact, $P_{\infty}^{(i-1)}$ is the unique commun pôle of the functions $x_0,...,x_{i-1} \in 
+F_{i-1}$ and we know their exact valuation. Thus we have
+
+\[\calH\left(P^{(i-1)}_{\infty}\right) = \left \langle q^{i-1-k}(q+1)^k \ , \ 0\leq k \leq i-1 \right\rangle_{\N}.\]
+
+Therefore, choosing $G_{i-1}$ as $E_{i,0}$ would work if and only for every $0 \leq j \leq q-1$
+\[ \left\lfloor \dfrac{d_i}{q} \right\rfloor - \left\lfloor \dfrac{d_i-j(q+1)^i}{q}\right\rfloor \in \calH\left(P^{(i-1)}_{\infty}\right).\]
 However, when $i$ increases, this condition is never satisfied. We have to choose $G_{i-1}$ differently.  To ensure that 
-$\deg(G_{i-1}-E_{i,j})$ is never a Weierstrass gap for $P_{\infty}^{(i-1)}$, we increase the degree $d_{i-1}$ of $G_{i-1}$. As we know that \todo{ref}
+$\deg(G_{i-1}-E_{i,j})$ is never a Weierstrass gap for $P_{\infty}^{(i-1)}$, we increase the degree $d_{i-1}$ of $G_{i-1}$. As we know that
 \[\rm{max}\left(\N \backslash \calH\left(P^{(i-1)}_{\infty}\right)\right) \leq 2g_{i-1} -1,\]
-we define $G_{i-1}\mydef d_{i-1} P^{(i-1)}_{\infty}$ where
+see for example \cite{S08}, Theorem 1.6.8, we define $G_{i-1}\mydef d_{i-1} P^{(i-1)}_{\infty}$ where
 \begin{equation}\label{eq:deg_herm}
 d_{i-1} \mydef \Floor{ \dfrac{d_i}{q}} + 2g_{i-1}.
 \end{equation}
 
 
-In this manner, we are sure to find balancing functions. The counterpart is that rates of the folded codes increase drastically, and one must ensure that the code on $\mathbb{P}^1$ is not trivial, \textit{i.e.} of rate $< 1$. \\
+In this manner, we are sure to find balancing functions. In fact, the choice of degree in $(8)$ ensure that for every $0 \leq j \leq q-1$ 
+
+\begin{equation}
+m_{i,j}:=deg(G_{i-1}-E_{i,j}) =  \left(\left\lfloor \dfrac{d_i}{q} \right\rfloor - \left\lfloor \dfrac{d_i-j(q+1)^i}{q}\right\rfloor + 2g_{i-1} \right) \in \mathcal{H}\left(P_{\infty}^{(i-1)}\right).
+\end{equation}
+
+Since we know a $\mathbb{N}$-basis of the Weierstrass semigroup at $P_{\infty}^{(i-1)}$, we are able to explicit the form of the functions $\nu_{i-1,j}$. In particular, they can be chosen as product of monomials in the functions $x_0,...,x_{i-1}$. More precisly, if $a_{i,j} := (a_{i,j}(0),...,a_{i,j}(i-1)) \in \mathbb{N}^i$ are integers such that
+
+\begin{equation}
+m_{i,j} = \sum\limits_{k=0}^{i-1} a_{i,j}(k) \cd q^{i-1-k}(q+1)^k,
+\end{equation}
+then $m_{i,j} \in \mathcal{H}\left(P_{\infty}^{(i-1)}\right)$. The corresponding choice for the balancing function is then given by 
+\[ \nu_{i-1,j} = \prod\limits_{k=0}^{i-1} x_k^{a_{i,j}(k)}.\]
+Note that finding a vector $a_{i,j} \in \mathbb{N}^i$ satisfying $(10)$ leads to the study of the diophantine equation
+\[m_{i,j} = \sum\limits_{k=0}^{i-1} a_k \cd q^{i-1-k}(q+1)^k\]
+with $i$ unknowns $a_k \in \mathbb{N}$, for which there exist at least one solution (and we only need one).
+
+Nevertheless, rising the degree of the divisor at each step has a counterpart. In fact, it also increase drastically the rate of the folded codes, and one must ensure that the code on $\mathbb{P}^1$ is not trivial, \textit{i.e.} of rate $< 1$. This will be the purpose of the next section. \\
 
 
 
@@ -360,6 +389,7 @@ then the rate of the code $C_0$ is less than $\rho$.
 Take an integer $r$. Let us assume that $q=p^{2r}$ and take $\kappa=p^{-\ell}$ for an $0<\l<2r$. Then the code $C_L\left(F_{p^r},F_{p^r}( \F_{p^{4r}} )\setminus\{ {P_\infty}^{(p^r)} \}, \kappa p^3rP_\infty^{(p^r)}\right)$ is foldable. When $r \rightarrow \infty$, the rate of $\calC$ tends to $\dfrac{\kappa}{2}$ and its relative minimum distance is bounded from below by $1-\dfrac{\kappa}{2}-\dfrac{\kappa}{4p^r}$.
 \jade{J'admets que c'est dégueulasse écrit comme ça mais on se comprend !}
 
+
 \begin{proposition}
 	Let us fix $R, \rho \in (0,1)$. Let us assume that $\ii =\sqrt{q}$ and that the divisor $G_{\ii}$ has degre $d_{\ii} = 2\kappa \sqrt{q}g_{\ii}$ for some $\kappa \in (0,1)$.
 	Then the rate of \jade{the last RS code} is less than $\rho$.
@@ -369,6 +399,9 @@ Take an integer $r$. Let us assume that $q=p^{2r}$ and take $\kappa=p^{-\ell}$ f
 
 
 \newpage
+
+\fr{On garde le tableau de tests ?}
+
 
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
