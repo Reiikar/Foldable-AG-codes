@@ -236,6 +236,49 @@ Let us fix $\rho \in (0,1)$. If
 then the rate of the code $C_0$ is less than $\rho$.
 \end{corollary}
 
+\newpage
+
+\begin{proposition} \fr{(à copier-coller)}
+Let us fix $\rho \in (0,1)$. Let us assume that $\ii=q^{\varepsilon}$ for $\varepsilon \in (0,1)$ and that the divisor $G_{\ii}$ has degree $d_{\ii} = (2\kappa+1)g_{\ii}$ for some $\kappa \in (0,1)$. Then the rate of the last RS code is less than $\rho$ if 
+\end{proposition}
+
+\begin{proof}
+If we want to have a familie of codes with constant rate $R$, and if we assume that we evaluate in all $q^{\ii+2}$ rationnals points, one have $\kappa \ii = Rq$. 
+Now, using Proposition \ref{prop:maj_genus_herm}, one have if $2\ii-1<q$ 
+\[ d_{\ii} \leq (2\kappa+1)\dfrac{\ii}{2}q^{\ii}(q+(\ii-1)).\]
+From Corollary \ref{cor:cdt_deg_herm}, we get that the code $C_0$ on $\mathbb{P}^1$ has a rate less than $\rho$ if 
+\begin{align*}
+& \quad (2\kappa+1)\dfrac{\ii}{2}(q+(\ii-1)) + (\ii-1)\left(1+\frac{\ii}{6}(3q-4+2\ii)\right)+1 < \rho q^2 \\
+& \iff 3(2\kappa+1)\ii(q+(\ii-1))+ (\ii-1)(6+\ii(3q-4+2\ii))+6 - 6\rho q^2 <0 \\
+& \iff (6\kappa q+3q - 6\kappa-3)\ii + (6\kappa+3)\ii^2 + 6(\ii-1) + \ii(\ii-1)(3q-4+2\ii)+6-6\rho q^2 < 0 \\
+& \iff (6\kappa q+3q - 6\kappa+3)\ii + (6\kappa+3)\ii^2 + \ii^2(3q-4+2\ii) - \ii(3q-4+2\ii) - 6\rho q^2 < 0 \\
+& \iff 2\ii^3 + \ii^2(6\kappa+3+3q-4-2) + \ii(6\kappa q+3q-6\kappa+3-3q+4) - 6\rho q^2 < 0 \\
+& \iff 2\ii^3 + 3\ii^2(2\kappa+q-1) + \ii (6\kappa(q-1)+7) - 6\rho q^2 <0.
+\end{align*}
+Since $\kappa \ii = Rq$, one finally gets
+\[2\ii^3 + 3\ii^2(q-1) + \ii(6Rq+7) + 6(Rq(q-1)-\rho q^2) < 0\]
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
 \subsection{Families of foldable codes with constant rate}
 
 \jade{Pour espérer avoir une famille de 'gros' codes à rendement constant, on va prendre un diviseur du haut avec un degré plus gros. la dépendance en le degré étant linéaire, ça devrait passer !}
