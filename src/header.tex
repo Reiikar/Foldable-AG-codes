@@ -19,7 +19,7 @@
 
 %----------- THÉORÈMES ET DÉFINITIONS -------------%
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theorem}{Theorem}
 \newtheorem*{theorem*}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem*{proposition*}{Proposition}
@@ -31,11 +31,8 @@
 \newtheorem{fact}[theorem]{Fact}
 \newtheorem{hyp}{Hypothesis}
 
-\newtheorem{definition}[theorem]{Definition} 
-% Sarah: je change le style des définitions pour qu'elles soient en italiques car
-% pour les longues définitions on ne sait pas où elles se terminent.
-\theoremstyle{definition} 
-\newtheorem{remark}[theorem]{Remark}
+\newtheorem{def1}[theorem]{Definition}
+\newtheorem{rq1}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
 \newtheorem*{example*}{Example}
 \newtheorem{problem}[theorem]{Problem}
@@ -66,7 +63,7 @@
 \newcommand{\ii}{i_{\rm{max}}}
 
 \newcommand{\Floor}[1]{\left\lfloor#1\right\rfloor}
-\newcommand{\F}{\mathbb{F}}
+\newcommand{\fq}{\mathbb{F}_q}
 \newcommand{\calX}{\mathcal{X}}
 \newcommand{\calC}{\mathcal{C}}
 \newcommand{\calF}{\mathcal{F}}
@@ -74,10 +71,14 @@
 \newcommand{\calH}{\mathcal{H}}
 \newcommand{\calP}{\mathcal{P}}
 
+\newcommand{\bbF}{\mathbb{F}}
+
 \newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\size}[1]{\left|#1\right|}
 \newcommand{\range}[1]{\set{0,\dots,#1-1}}
 \newcommand{\Range}[2]{\set{#1,\dots,#2}}
+\newcommand{\s}{\vspace*{0.2cm}}
+
 
 %Commentaires :
 
