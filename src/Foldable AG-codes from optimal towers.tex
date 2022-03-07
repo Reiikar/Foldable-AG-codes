@@ -230,7 +230,7 @@ F_i = F_{i-1}(x_i), \ \rm with \ \it x_i^2=\dfrac{x_{i-1}^2+1}{2x_{i-1}}.
 
 \s
 
-\subsection{Ramification in the tower}
+\subsection{Ramification and genus}
 
 \s
 
@@ -297,7 +297,7 @@ The crucial point now is the suty of the ramification of the point $P_{-1}^{(0)}
 \begin{lemma} \label{ext P moins 1}
 Fix $i \geq 1$. 
 \begin{enumerate}
-\item $P_{-1}^{(i-1)}$ totally splits in $F_i$, its two extensions being $P_i^{(i)}$ and $P_{-i}^{(i)}$;
+\item $P_{-1}^{(i-1)}$ totally splits in $F_i$, its two extensions being $Q_i^{(i)}$ and $Q_{-i}^{(i)}$. Moreover, theses two places are the only zeroes of the function $1+x_i^2 \in F_i$, and $\nu_{Q_{\pm i}^{(i)}}(1+x_i^2) = 2^i$;
 \item Let $r \geq 0$, and denote by $Q_r^{(i)}|P_{-1}^{(r)}$ an extension of $P_{-1}^{(r)}$ in $F_i$. There are two cases :
 \begin{itemize}
 \item[(i)] If $0 \leq r \leq \lfloor \frac{i-3}{2} \rfloor$ (note that $i \geq 3$ and $r<i-1$), then we have $Q_r^{(i)}|Q_r^{(i-1)}$, with $e(Q_r^{(i)}|Q_r^{(i-1)}) =2$ and 
@@ -340,6 +340,7 @@ We can extend the definition for $r=-2$ and $r=-1$ by setting $D_{-2}^{(i)} := P
 
 \s
 
+Note that the places introduced above are all distincts, except for $Q_{\pm i}^{(0)} = P_{\pm i}^{(0)}$. 
 From lemma \ref{ext P moins 1}, we have
 
 \s
@@ -347,13 +348,13 @@ From lemma \ref{ext P moins 1}, we have
 \begin{corollary} \label{deg et ram D_r}
 \begin{enumerate}
 \item For any $i \geq 0$ and any $r$ with $-2 \leq r \leq i$, we have 
-\begin{equation}
+\begin{equation*}
 \rm deg \it (D_r^{(i)}) = \left\{ \begin{array}{ll}
 2^{i-r} \ , \ if \ i \leq 2r+2 \\
 2^{r+2} \ , \ if \ i \geq 2r+2.
 \end{array}
 \right.
-\end{equation}
+\end{equation*}
 \item If $i \geq 1$ and $r$ is such that $-2 \leq r \leq i$, then a place in \rm Supp($D_r^{(i)}$) ramifies in $F_i/F_{i-1}$ if and only if $i \geq 2r+3$.
 \end{enumerate}
 \end{corollary}
@@ -367,13 +368,17 @@ We know have all the tools recquired to study the principal divisor of functions
 \begin{proposition} \label{div principaux}
 \begin{enumerate}
 \item We have $(x_0)^{F_0} = P_0^{(0)} - P_{\infty}^{(0)}$, $(x_1)^{F_1} = D_{-1}^{(1)} - P_0^{(1)} - P_{\infty}^{(1)}$ and 
-\begin{equation}
+\begin{equation*}
 (x_i)^{F_i} = 2^{i-2}D_{i-2}^{(i)} - P_{\infty}^{(i)} - \sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i)} - \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{2r-i+2}D_r^{(i)}, \ \rm if \it \ i\geq 2.
-\end{equation}
+\end{equation*}
 \item We have $(1+x_0)^{F_0} = P_{-1}^{(0)} - P_{\infty}^{(0)}$, $(1+x_1)^{F_1} = 2P_{-1}^{(1)} - P_0^{(1)} - P_{\infty}^{(1)}$ and 
-\begin{equation}
+\begin{equation*}
 (1+x_i)^{F_i} = 2^{i}P_{-1}^{(i)} - P_{\infty}^{(i)} - \sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i)} - \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{2r-i+2}D_r^{(i)}, \ \rm if \it \ i\geq 2.
-\end{equation}
+\end{equation*}
+\item We have $(1+x_0^2)^{F_0} =  D_{-1}^{(0)} - 2P_{\infty}^{(0)}$, $(1+x_1^2)^{F_1} = 2D_{0}^{(1)} - 2P_0^{(1)} - 2P_{\infty}^{(1)}$ and 
+\begin{equation*}
+(1+x_i^2)^{F_i} = 2^{i}D_{i-1}^{(i)} - 2P_{\infty}^{(i)} - 2\sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i)} - \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{2r-i+3}D_r^{(i)}, \ \rm if \it \ i\geq 2.
+\end{equation*}
 \end{enumerate}
 \end{proposition}
 
@@ -393,8 +398,8 @@ Since we have studied all the ramification in the tower $\mathcal{F}$, we are no
 For $i \geq 0$, the genus of $F_i$ is given by 
 \begin{equation*}
 g_i := g(F_i) = \left\{ \begin{array}{ll}
-(2^{\frac{i+1}{2}}-1)(2^{\frac{i}{2}}-1) \ , \ \rm if \ \it j \ \rm \ is \ even \\
-(2^{\frac{i+1}{2}}-1)^2 \ , \ \rm if \ \it j \ \rm \ is \ odd.
+(2^{\frac{i+1}{2}}-1)(2^{\frac{i-1}{2}}-1) \ , \ \rm if \ \it j \equiv \rm 1[2] \\
+(2^{\frac{i}{2}}-1)^2 \ , \ \rm if \ \it j \equiv \rm 0[2].
 \end{array}
 \right.
 \end{equation*}
@@ -405,6 +410,24 @@ g_i := g(F_i) = \left\{ \begin{array}{ll}
 \begin{proof}
 \cite{NOQ}, Proposition 2.6
 \end{proof}
+
+\s
+
+Let us conclude this sectin with an easy Corollary that will be useful later on.
+
+\s
+
+\begin{corollary} \label{genus}
+For $i\geq 3$, we have
+\begin{equation*}
+2g(F_i) = \left\{ \begin{array}{ll}
+2^{i+1}-3^{\frac{i+1}{2}}+2 \ , \ \rm if \ \it j \equiv \rm 1[2] \\
+2^{i+1}-2^{\frac{i+4}{2}} +2\ , \ \rm if \ \it j \equiv \rm 0[2].
+\end{array}
+\right.
+\end{equation*}
+\end{corollary}
+
 
 \s
 
@@ -423,7 +446,7 @@ is construct such that
 
 \s
 
-\begin{rq1} \label{choice of P_inf}
+\begin{rq1} \label{choice of P_inf} \rm
 The authors in \cite{NOQ} describe a way to build a basis for the Riemann-Roch space associated to a multiple of the point at infinity, by using smaller Riemann-Roch spaces on the quotient curve at each step. This motivates our choice of divisor since we have a good way to construct basis of its Riemann-Roch space.
 \end{rq1}
 
@@ -458,7 +481,7 @@ Let $1 \leq i \leq \ii$ and consider the divisor $D_i := r_i P_{\infty}^{(i)}$. 
 with 
 \[E_{i,0} = \left \lfloor \frac{r_i}{2}\right\rfloor P_{\infty}^{(i-1)}\]
 and 
-\[E_{i,1} = 2^{i-2}(Q_{-i}^{(i-1)}+Q_{i}^{(i-1)}) - \left \lfloor \frac{r_i-1}{2}\right\rfloor P_{\infty}^{(i-1)} - \sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i-1)} - \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{2r-i+2}D_r^{(i-1)}\]
+\[E_{i,1} = 2^{i-2}D_{i-2}^{(i-1)} + \left \lfloor \frac{r_i-1}{2}\right\rfloor P_{\infty}^{(i-1)} - \sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i-1)} - \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{2r-i+2}D_r^{(i-1)}\]
 \end{corollary}
 
 \s
@@ -473,7 +496,339 @@ Immediate consequence of Theorem \ref{decompositon}. Note that the structure of 
 
 \s
 
-Recall that in Definition \ref{compatible}, we have relaxed the properties for a divisor to be compatible, compared t the ones used in \cite{IOPP}. Let us explain now how to satistyies theses properties in the tower $\calF$, with our choice of one point divisor.
+Recall that in Definition \ref{compatible}, we have relaxed the properties for a divisor to be compatible, compared t the ones used in \cite{IOPP}. Let us explain now how to satistyies theses properties in the tower $\calF$, with our choice of one point divisor. \\
+Starting from a divisor of the form $D_{\ii} := r_{\ii}P_{\infty}^{(\ii)}$, we aim to build a sequence of divisors $(D_i)$ such that each $D_i$ is also only supported by the point $P_{\infty}^{(i)}$, in order to be able to use the decomposition of Riemann-Roch spaces given by Corollary \ref{our decomposition} at each step. At the step $i$, a reasonable choice for $D_{i-1}$ would be to take $D_{i-1} = E_{i,0}$, as it has the desired form itself. However, in order to satisfy condition 2. of Definition \ref{compatible}, we will need both divisors $D_{i-1}-E_{i,j}$ ($j=0,1$) to have a high degree. This is motivated by the following result.
+
+\s
+
+\begin{proposition} \label{hugues' result}
+Let $D = \sum\limits_{i=1}^s n_iP_i$ be a divisor on a given function field $F$, and $1 \leq r \leq s$. If $\rm deg \it (D) \geq 2g(F)-1+r$, then there exist a function $h \in F$ such that 
+\[\forall \ 1 \leq i \leq r \ , \ \nu_{P_i}(h) = -n_i.\]
+In paticular, if $r=s$, we have $(h)^F_{\infty} = D$.
+\end{proposition}
+
+\s
+
+\begin{proof}
+Set $D' := D - \sum\limits_{i=1}^r P_i = (n_1-1)P_1 + ... + (n_r-1)P_r + n_{r+1}P_{r+1} + ... + n_sP_s$. By hypothesis, one have 
+\[\rm deg \it (D') = \rm deg \it (D) - r \geq 2g(F)-1.\]
+Thus, for every $1 \leq i \leq r$, we have equality in Riemann-Roch Theorem, and 
+\[\ell(D'+P_i) = \ell(D')+1.\] 
+As a result, there exist functions $h_i \in L(D'+P_i)\backslash L(D')$ for $1 \leq i \leq r$, such that 
+\[\nu_{P_i}(h_i) = -n_i\]
+and for every $1 \leq j \leq r$ with $j \neq i$, 
+\[\nu_{P_j}(h_i) \geq \nu_{P_j}(D'+P_i) = -n_j+1.\]
+Set $h := \sum\limits_{i=1}^r h_i \in F$. Then the strict triangular inegality gives, pour any $1 \leq i \leq r$
+\begin{align*}
+\nu_{P_i}(h) &= min\{\nu_{P_i}(h_i),\nu_{P_i}(h-h_i)\} \\
+	&= -n_i.
+\end{align*}
+The result follows.
+\end{proof}
+
+\s
+
+From the above proposition and according to Definition \ref{compatible}, we need at each step that for $j=0,1$
+\begin{equation} \label{only}
+\rm deg \it \left(D_{i-1} - E_{i,j} + (f_{i-1,j})^{F_{i-1}}\right) \geq \rm 2 \it g(F_{i-1}) -1 + \#\rm Supp \it \left( D_{i-1} - E_{i,j} + (f_{i-1,j})^{F_{i-1}} \right).
+\end{equation}
+
+For this reason and in without changing the support of our divisors, on need to raise $\nu_{P_{\infty}^{(i-1)}}(D_{i-1})$. In what follows, we will choose a positive integer $\alpha_{i-1}$ such that $D_{i-1} := \left(\left \lfloor \frac{r_i}{2}\right\rfloor + \alpha_{i-1} \right) P_{\infty}^{(i-1)}$.
+
+\s
+
+
+\begin{lemma} \label{study diff}
+Fix $0 \leq i \leq \ii$, and suppose that $D_i := r_i P_{\infty}^{(i)} \in \rm Div \it (F_i)$. Let us choose $D_{i-1} := \left(\left \lfloor \frac{r_i}{2}\right\rfloor + \alpha_{i-1} \right) P_{\infty}^{(i-1)}$ as above. Then
+\[D_{i-1} - E_{i,0} = \alpha_{i-1} P_{\infty}^{(i-1)}\]
+and 
+\[D_{i-1} - E_{i,1} = \left( \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} \right)  P_{\infty}^{(i-1)} - 2^{i-2}D_{i-2}^{(i-1)} + \sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i-1)} + \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{2r-i+2}D_r^{(i-1)} \]
+\end{lemma}
+
+\s
+
+\begin{proof}
+Immediate consequence of Corollary \ref{our decomposition}.
+\end{proof}
+
+\s
+
+\subsubsection{Towards an effecticive divisor}
+
+\s
+
+With the choice we made in Lemma \ref{study diff}, note we already have $D_{i-1}-E_{i,0} \geq 0$, that is we don't have to seek for a function $f_{i-1,0}$ (see Definition \ref{compatible}, 1.). However, it is clear from the same Lemma that the divisor $D_{i-1}-E_{i,1}$ is not effective. Our next goal will then be to find a function $f_{i-1,1} \in F_{i-1}$ such that 
+\begin{equation} \label{recherche f_i}
+D_{i-1} - E_{i,1} +(f_{i-1,j})^{F_{i-1}} \geq 0.
+\end{equation}
+In particular, since we want to apply this work to an effective IOPP, we would like to find an explicit form for the function $f_{i-1,1}$ (for every $0 \leq i \leq \ii$). We will see below that this is possible, and that we can even construct resursively the functions $(f_{i-1,1})_i$, allowing the prover to precompute it. 
+
+\s
+
+Looking at the expression of $D_{i-1}-E_{i,1}$, note that its pole divisor is $2^{i-2}D_{i-2}^{(i-1)}$. In order to correct this, one need to find a rationnal function those zero divisor is also supported by the divisor $D_{i-2}^{(i-1)}$.
+
+\s
+
+\todo{ case i=2 and i=3 for the choices of $f_2$ and $f_1$}
+
+\begin{lemma} \label{f_i 1}
+Let $i \geq 3$. Then we have 
+\[\left(\dfrac{1+x_{i-1}^2}{1+x_{i-2}}\right)^{F_{i-1}} = 2^{i-2}D_{i-2}^{(i-1)} - 2^{i-4}D_{i-4}^{(i-1)}.\]
+\end{lemma}
+
+\s
+
+\begin{proof}
+Using Proposition \ref{div principaux}, we compute
+\[\left(\dfrac{1+x_{i-1}^2}{1+x_{i-2}}\right)^{F_{i-1}}  = 2^{i-2}D_{i-2}^{(i-1)} + \left[(x_{i-2})^{F_{i-1}}_{\infty} - 2(x_{i-1})^{F_{i-1}}_{\infty}\right],\]
+where 
+\begin{align*} \null  (x_{i-2})^{F_{i-1}}_{\infty} - 2(x_{i-1})^{F_{i-1}}_{\infty}  = \pi^*\left(P_{\infty}^{(i-2)} + \sum\limits_{r=-2}^{\lfloor \frac{i-5}{2}\rfloor} D_r^{(i-2)} + \sum\limits_{r=\lfloor \frac{i-3}{2}\rfloor}^{i-5} 2^{2r-i+4}D_r^{(i-2)}\right) & \\ - 2 \left( P_{\infty}^{(i-1)} + \sum\limits_{r=-2}^{\lfloor \frac{i-4}{2}\rfloor} D_r^{(i-1)} + \sum\limits_{r=\lfloor \frac{i-2}{2}\rfloor}^{i-4} 2^{2r-i+3}D_r^{(i-1)}\right)
+\end{align*}
+From Corollary \ref{deg et ram D_r}, we know that any place in $D_r^{(i-2)}$ ramifies in $F_{i-1}/F_{i-2}$ if and only $i-1 \geq 2r+3$, ie. $\lfloor \frac{i-4}{2}\rfloor \geq r$. Thus, we get
+\begin{align*}
+(x_{i-2})^{F_{i-1}}_{\infty} - 2(x_{i-1})^{F_{i-1}}_{\infty} &= 
+2\sum\limits_{r=-2}^{\lfloor \frac{i-5}{2}\rfloor} D_r^{(i-1)} + \sum\limits_{r=\lfloor \frac{i-3}{2}\rfloor}^{i-5} 2^{2r-i+4}D_r^{(i-1)} - 2\sum\limits_{r=-2}^{\lfloor \frac{i-4}{2}\rfloor} D_r^{(i-1)} + \sum\limits_{r=\lfloor \frac{i-2}{2}\rfloor}^{i-4} 2^{2r-i+4}D_r^{(i-1)} \\
+&= \left\{ \begin{array}{ll}
+-2^{2(i-4)-i+4}D_{i-4}^{(i-1)} = -2^{i-4}D_{i-4}^{(i-1)} \ , \ \rm if \ \it i \equiv \rm 1[2] \\
+-2D_{\lfloor \frac{i-4}{2}\rfloor}^{(i-1)} + 2 \cd 2^{2\lfloor \frac{i-3}{2} \rfloor -i+4} D_{\lfloor \frac{i-3}{2} \rfloor}^{(i-1)} - 2^{i-4}D_{i-4}^{(i-1)} = 2^{i-4}D_{i-4}^{(i-1)} \ , \ \rm if \ \it i \equiv \rm 0[2]
+\end{array}
+\right. \\
+&= -2^{i-4}D_{i-4}^{(i-1)}.
+\end{align*}
+The result follows.
+\end{proof}
+
+\s
+
+The above Lemma provides a function in $F_{i-1}$ those exact zero divisor is the pole divisor of $D_{i-1}-E{i,1}$. Note however that we can not take $f_{i-1,1} = \dfrac{1+x_{i-1}^2}{1+x_{i-2}}$ since we will create another pole. To overcome this difficulty, we use the fact that we can raise the valuation at $P_{\infty}^{(i-1)}$ via the integer $\alpha_{i-1}$. The idea is thus to find a function $h_{i-1}$ in $F_{i-1}$ whose only pole is at $P_{\infty}^{(i-1)}$, and then to use it to correct the remaining pole. Note that this will forces us to choose $\alpha_{i-1} \geq \rm deg \it ((h_{i-1})^{F_{i-1}}_0))$.
+
+\s
+
+\begin{proposition} \label{function h}
+Let $i \geq 3$, and set $h_{i-1} := \prod\limits_{j=0}^{i-1}x_j \in F_{i-1}$. Then we have 
+\[(h_{i-1})^{F_{i-1}} = \sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i-1)} + \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{2r-i+3}D_r^{(i-1)} - (2^{i}-1) P_{\infty}^{(i-1)}.\]
+
+\end{proposition}
+
+\s
+
+\begin{proof}
+We proceed by induction en the integer $i \geq 3$. For $i=3$, we have $h_2 = x_0x_1x_2$, thus using Proposition \ref{div principaux}, item 1., we get
+\begin{align*}
+(h_2)^{F_2} &= (x_0)^{F_2} + (x_1)^{F_2} + (x_2)^{F_2} \\
+&= (4D_{-2}^{(2)}-4P_{\infty}^{(2)}) + (2D_{-1}^{(2)}-2D_{-2}^{(2)} - 2P_{\infty}^{(2)}) + (D_0^{(2)} - D_{-2}^{(2)} - D_{-1}^{(2)} - P_{\infty}^{(2)}) \\
+&= D_{-2}^{(2)} + D_{-1}^{(2)} + D_{0}^{(2)} - 7P_{\infty}^{(2)},
+\end{align*}
+which gives the initialisation. Now, let us suppose the formula true for a given $i \geq 3$. Taking the pullback, and recalling that any place in $D_r^{(i-1)}$ ramifies in $F_i/F_{i-1}$ if and only if $\lfloor \frac{i-3}{2} \rfloor \geq r$ (see 2., Corollary \ref{deg et ram D_r}), we have
+\[(h_{i-1})^{F_i} = 2\sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i)} + \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{2r-i+3}D_r^{(i)} - (2^{i+1}-2) P_{\infty}^{(i)}.\]
+From Proposition \ref{div principaux}, item 1., we get
+\begin{align*}
+(h_i)^{F_i} &= (h_{i-1})^{F_i} + (x_i)^{F_i} \\
+&= \sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i)} + \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} (2^{2r-i+3}-2^{2r_i+2})D_r^{(i)} + 2^{i-2}D_{i-2}^{(i)} + (2^{i}-2+1) P_{\infty}^{(i)} \\
+&= \sum\limits_{r=-2}^{\lfloor \frac{i-2}{2}\rfloor} D_r^{(i)} +
+ \sum\limits_{r=\lfloor \frac{i}{2}\rfloor}^{i-2} 2^{2r-i+2}D_r^{(i)} - (2^{i+1}-1) P_{\infty}^{(i)},
+\end{align*}
+which gives the result. Note that in the last equality, we need to take care of the values of $\lfloor \frac{i-1}{2} \rfloor$,  $\lfloor \frac{i}{2} \rfloor$ and $\lfloor \frac{i+1}{2} \rfloor$ when we change the indices in our sums. The lector can easyly verify that the equality holds, by checking according to the parity of $i$.
+\end{proof}
+
+\s
+
+The function $h_{i-1}$ introduced in the above proposition looks promising since it has the same zeroes as the divisor $D_{i-1}-E_{i,1}$ (see Lemma \ref{study diff}), exepted for the point at infinity whose huge pole can be controlled using the integer $\alpha_i$. Our final choice of function $f_{i-1,1}$ is given below.
+
+\s
+
+\begin{corollary} \label{choice of f_i}
+Let $i \geq 3$. Set $f_{i-1,1} := h_{i-1}^2\dfrac{1+x_{i-1}^2}{1+x_{i-2}} \in F_{i-1}$. Then 
+\[(f_{i-1,1})^{F_{i-1}} = 2^{i-2}D_{i-2}^{(i-1)} + 2\sum\limits_{r=-2, r \neq i-4}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i-1)} + \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor, r \neq i-4}^{i-3} 2^{2r-i+4}D_r^{(i-1)} - (2^{i+1}-2) P_{\infty}^{(i-1)}.\]
+\end{corollary}
+
+\s
+
+\begin{proof}
+Consequence of  Lemma \ref{f_i 1} and Proposition \ref{function h}.
+\end{proof}
+
+\s
+
+\begin{rq1} \rm
+Note that we had to take $h_{i-1}^2$ instead of $h_{i-1}$ in the construction of $f_{i-1,1}$, since otherwise we would still have a pôle at $D_{i-4}^{(i-1)}$. Taking a square a the optimial choice to balance the remaining pole.
+\end{rq1}
+
+\s
+
+\begin{corollary} \label{our effective divisor}
+Let $i \geq 3$. Then 
+\begin{align*}
+G_{i-1} := D_{i-1} -E_{i,1} + (f_{i-1,1})^{F_{i-1}} &= \left( \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} +2-2^{i+1}\right)  P_{\infty}^{(i-1)} + 3\sum\limits_{r=-2,r\neq i-4}^{\lfloor \frac{i-3}{2}\rfloor} D_r^{(i-1)} + \\ & +3 \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor,r\neq i-4}^{i-3} 2^{2r-i+2}D_r^{(i-1)} + \left\{ \begin{array}{ll}
+2^{i-6}D_{i-4}^{(i-1)} \ , \ i \geq 6 \\
+D_{i-4}^{(i-1)} \ , \ i \leq 5.
+\end{array}
+\right.
+\end{align*}
+Moreover, if $\alpha_{i-1} \geq 2^{i+1}$, then $G_{i-1}$ is an effective divisor.
+\end{corollary}
+
+\s
+
+\begin{proof}
+The result follows from Lemma \ref{study diff} and Corollary \ref{choice of f_i}. Moreover, it is clear that $G_{i-1}$ is effective if and only if its valuation at $P_{\infty}^{(i-1)}$ is non négative, that is
+\[\left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} +2-2^{i+1} > 0.\]
+Thus, taking $\alpha_{i-1} \geq 2^{i+1}$ is a sufficient condition.
+\end{proof}
+
+\s
+
+At this step, starting from a divisor $D_i = r_iP_{\infty}^{(i)} \in \rm Div \it (F_i)$, we have constructed a divisor $D_{i-1}$ supported by $P_{\infty}^{(i-1)}$, as well as functions $f_{i-1,j} \in F_{i-1}$ (for $j=0,1$) such that the condition 1. of Definition \ref{compatible} is satisfyed. It then remains to find balancing functions $\nu_{i-1,j} \in F_{i-1}$ that satisfy condiotion 2. of divisor compatibility.
+
+\s
+
+\subsubsection{Searching for balancing functions}
+
+\s
+
+In this section, we will discuss whenever there exist balancing functions in our settings. The idea here is again to take $\alpha_{i-1}$ big enough such that we can use Proposition \ref{hugues' result} to ensure we can find balancing functions. With previous notations, a sufficient condition is given by (see. Equation (\ref{only}))
+\begin{equation} \label{9}
+\rm deg \it (D_{i-1}) = \alpha_{i-1} \geq \rm 2 \it g \it (F_{i-1}). 
+\end{equation}
+for the choice of $\nu_{i-1,0}$ and 
+\begin{equation} \label{condition pour balancer}
+\rm deg \it \left(G_{i-1}\right) \geq \rm 2 \it g(F_{i-1}) -1 + \#\rm Supp \it \left( G_{i-1} \right)
+\end{equation}
+for $\nu_{i-1,1}$.
+Keep in mind that we already supposed above that $\alpha_{i-1} \geq 2^{i+1}$. Here, we are led to study the degree and the cardinality of the support of $G_{i-1}$.
+
+\s
+
+\begin{lemma} \label{deg Gi}
+Let $i \geq 3$. Then 
+\begin{equation*}
+\rm{deg} (\it G_{i-1}) =  \rm \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1}-2^{i} -1 + 3 \cd 2^{\lfloor \frac{i+1}{2} \rfloor} + \left\{ \begin{array}{ll}
+ 0 \ , \ \rm{if} \ \it i \leq 5 \\
+ 2^{i-2} \ , \ \rm{if} \ \it i \geq 6.
+\end{array}
+\right.
+\end{equation*}
+\end{lemma}
+
+\s
+
+\begin{proof}
+Recall the structure of the divisor $G8{i-1}$ from Corollary \ref{our effective divisor}. In order to compute its degree, we need to care for the special value $r=i-4$ (depending on if $D_{i-4}^{(i-1)}$ is in the first or the second sum. Recall the formula for the degree of $D_r^{(i-1)}$ (see Corollary \ref{deg et ram D_r}). In particular, we have 
+\begin{equation*}
+\rm{deg} (\it D_{i- \rm 4}^{(i-1)}) = \left\{ \begin{array}{ll}
+8 \ , \ \rm{if} \ i \geq 6 \\
+2^{i-2} \ , \ \rm{if} \ i \leq 5.
+\end{array}
+\right.
+\end{equation*}
+Moreover, if $i \leq 5$, then the divisor $D_{i-4}^{(i-1)}$ is in the first sum, that is we have in this case
+\begin{align*}
+\rm{deg}(\it G_{i-1}) &= \left( \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} +2-2^{i+1}\right) + 3\sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} 2^{r+2} +3 \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{2r-i+2}2^{i-1-r} - \underbrace{2\cd 2^{i-2}}_{r=i-4} \\
+&= \left( \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} +2-2^{i+1}\right) + 3 \cd 4\sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} 2^{r} + 3 \cd 2 \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^r - 2^{i-1} \\
+&= \left( \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} +2-2^{i+1}\right) + 3 \left( 2^{\lfloor \frac{i+3}{2} \rfloor}-1 + 2^{i-1} - 2^{\lfloor \frac{i+1}{2}\rfloor} \right) - 2^{i-1} \\
+&= \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} -1-2^{i+1} + 3 \cd 2^{\lfloor \frac{i+1}{2}\rfloor} + 3^cd 2^{i-1}-2^{i-1} \\
+&=\left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} -1-2^{i+1} + 3 \cd 2^{\lfloor \frac{i+1}{2}\rfloor} + 2^i \\
+&=\left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} -1-2^{i} + 3 \cd 2^{\lfloor \frac{i+1}{2}\rfloor}
+\end{align*}
+Now if $i \geq 6$, the divisor $D_{i-4}^{(i-1)}$ is in the second sum and as a fixed degree of $8$. Thus we have 
+\begin{align*}
+\rm{deg}(\it G_{i-1}) &= \left( \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} +2-2^{i+1}\right) + 3\sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} 2^{r+2} +3 \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{r+1} + \underbrace{(-3\cd 2^{i-3} + 2^{i-6}\cd 8)}_{r=i-4} \\
+&= \left( \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} +2-2^{i+1}\right) + 3 \cd 4\sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} 2^{r} + 3 \cd 2 \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^r - 2^{i-2} \\
+&= \left( \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} +2-2^{i+1}\right) + 3 \left( 2^{\lfloor \frac{i+3}{2} \rfloor}-1 + 2^{i-1} - 2^{\lfloor \frac{i+1}{2}\rfloor} \right) - 2^{i-2} \\
+&= \left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} -1-2^{i+1} + 3 \cd 2^{\lfloor \frac{i+1}{2}\rfloor} + 5 \cd 2^{i-2} \\
+&=\left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} -1-2^{i+1} + 3 \cd 2^{\lfloor \frac{i+1}{2}\rfloor} + 2^i + 2^{i-2} \\
+&=\left \lfloor \frac{r_i}{2}\right\rfloor - \left \lfloor \frac{r_i-1}{2}\right\rfloor + \alpha_{i-1} -1-2^{i} + 3 \cd 2^{\lfloor \frac{i+1}{2}\rfloor} + 2^{i-2}.
+\end{align*}
+\end{proof}
+
+\s
+
+\begin{lemma} \label{supp Gi}
+Let $i \geq 3$. Then 
+\[ \#\rm{Supp} (\it{G}_{i- \rm 1}) = \rm 3 \cd 2^{\lfloor \frac{i+3}{2}\rfloor} - 4. \]
+\end{lemma} 
+
+\s
+
+\begin{proof}
+Note that every place in the support of some $D_r^{(i-1)}$ has degree one, then we have from Corollary \ref{deg et ram D_r}
+\begin{align*}
+\#\rm{Supp} (\it{G}_{i- \rm 1}) & = 1 + \sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} \#\rm{Supp} (\it{D_r^{(i-1)}})  + \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} \#\rm{Supp} (\it{D_r^{(i-1)}}) \\
+& = 1 + \sum\limits_{r=-2}^{\lfloor \frac{i-3}{2}\rfloor} 2^{r+2}  + \sum\limits_{r=\lfloor \frac{i-1}{2}\rfloor}^{i-3} 2^{i-1-r} \\
+&= 1 + 4(2^{\lfloor \frac{i-1}{2}\rfloor}-1/4) + 2^i(2^{-\lfloor \frac{i-1}{2} \rfloor}- 2^{2-i}) \\
+&= 2^{\lfloor \frac{i+3}{2}\rfloor} + 2^{\lfloor \frac{i+1}{2}\rfloor}-4 \\
+&= 3 \cd 2^{\lfloor \frac{i+3}{2}\rfloor} - 4.
+\end{align*}
+\end{proof}
+
+\s
+
+As a consequence, the conditions $(\ref{9})$ and (\ref{condition pour balancer}), combined with the fact that we already have $\alpha_{i-1} \geq 2^{i+1}$ leads to the following condition on $\alpha_{i-1}$.
+
+\s
+
+\begin{corollary} \label{conditions on alpha_i}
+Let $i \geq 3$. Then if 
+\begin{equation} \label{final condition on alpha}
+\alpha_{i-1} \geq 3\cd 2^i-2 \ ,
+\end{equation}
+ there exist balancing function $\nu_{i-1,j} \in F_{i-1}$ that satisfy \rm{2.} \it in Definition \ref{compatible}.
+\end{corollary}
+
+\s
+
+\begin{proof}
+Note that the hypothesis $\alpha_{i-1} \geq 2^{i+1}$ already implies $(\ref{9})$. Let us check the condition (\ref{condition pour balancer}) in details. We have using Corollary \ref{genus}, Lemma \ref{deg Gi} and  Lemma \ref{supp Gi}
+\begin{align*}
+ & \quad \quad  \rm deg \it \left(G_{i-1}\right)  \geq \rm 2 \it g(F_{i-1}) -1 + \#\rm Supp \it \left( G_{i-1} \right) \\
+& \iff \alpha_{i-1} \geq 2g(F_{i-1}) -1 + 3 \cd 2^{\lfloor \frac{i+3}{2}\rfloor} - 4 - \left \lfloor \frac{r_i}{2}\right\rfloor + \left \lfloor \frac{r_i-1}{2}\right\rfloor +2^i +1 - 3\cd2^{\lfloor \frac{i+1}{2}\rfloor} - \left\{ \begin{array}{ll}
+0 \ , \ i \leq 5 \\
+2^{i-2} \ , \ i \geq 6
+\end{array}
+\right. \\
+&  \quad \quad \geq 2g(F_{i-1}) + 3 \cd 2^{\lfloor \frac{i+1}{2}\rfloor} - 4 + \left\{ \begin{array}{ll}
+2^i \ , \ i \leq 5 \\
+3 \cd 2^{i-2} \ , \ i \geq 6
+\end{array}
+\right. \\
+&  \quad \quad \geq \left\{ \begin{array}{ll}
+2^{i+1}-3\cd 2^{\frac{i+1}{2}} +2 + 3 \cd 2^{\lfloor \frac{i+1}{2}\rfloor} - 4 +2^i \ , \ i\equiv 1[2]\\
+2^{i+1}- 2^{\frac{i+4}{2}} +2 + 3 \cd 2^{\lfloor \frac{i+1}{2}\rfloor} - 4 +2^i \ , \ i\equiv 0[2]
+\end{array}
+\right. \\
+& \quad \quad \geq \left\{ \begin{array}{ll}
+2^{i+1}-2 +2^i \ , \ i\equiv 1[2]\\
+2^{i+1}- 2-2^{\frac{i}{2}} + 2^i \ , \ i\equiv 0[2]
+\end{array}
+\right. \\
+& \quad \quad  \geq 3 \cd 2^i-2 \ , \ \forall \ i,
+\end{align*}
+which gives the desired condition.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
